@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include hondanont *.css
+recursive-include hondanont *.csv
+recursive-include hondanont *.html
+recursive-include hondanont *.ico
+recursive-include hondanont *.js
+recursive-include hondanont *.json
+recursive-include hondanont *.md
+recursive-include hondanont *.png
+recursive-include hondanont *.py
+recursive-include hondanont *.svg
+recursive-include hondanont *.txt
+recursive-exclude hondanont *.pyc
