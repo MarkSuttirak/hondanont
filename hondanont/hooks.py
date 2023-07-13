@@ -199,3 +199,5 @@ app_license = "MIT"
 # auth_hooks = [
 #	"hondanont.auth.validate"
 # ]
+
+website_route_rules = [{'from_route': '/honda/<path:app_path>', 'to_route': 'honda'},]
