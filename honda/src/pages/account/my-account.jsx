@@ -22,6 +22,7 @@ const MyAccount = () => {
   }
 
   const okModal = () => {
+    window.location.href = '/login'
     setLogoutModal(false)
   }
 

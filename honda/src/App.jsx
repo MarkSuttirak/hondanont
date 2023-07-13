@@ -15,6 +15,8 @@ import TermsAndConditions from './pages/account/termsAndConditions';
 import Redemption from './pages/points-rewards/redemption';
 import EditAccount from './pages/account/edit-account';
 
+import LoginPage from './pages/login/login';
+
 function App() {
   return (
     <FrappeProvider socketPort={import.meta.env.VITE_SOCKET_PORT ?? ''}>
@@ -31,6 +33,8 @@ function App() {
           <Route path="/terms-and-conditions" element={<TermsAndConditions />}/>
           <Route path="/reward/:id" element={<Redemption />}/>
           <Route path="/edit-account" element={<EditAccount />}/>
+
+          <Route path="/login" element={<LoginPage />}/>
         </Routes>
       </BrowserRouter>
     </FrappeProvider>

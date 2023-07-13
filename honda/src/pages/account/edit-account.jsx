@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState,useEffect } from "react";
 import HeaderMobile from "../../components/header";
 import { Input, DatePicker, Button,Form,notification, Skeleton } from "antd";
-import { useFrappeGetDoc } from "frappe-react-sdk";
+import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 const EditAccount = () => {
   document.body.style.backgroundColor = "#F8F8F8";
@@ -13,6 +13,12 @@ const EditAccount = () => {
   const { data: user, isLoading } = useFrappeGetDoc('User', 'bonnie@mail.com', {
     fields: ['full_name', 'email']
   })
+
+  const { updateDoc } = useFrappeUpdateDoc();
+
+  const onUpdate = (info) => {
+    updateDoc('User', 'bonnie@mail.com', info)
+  }
 
   const typeInfo = () => {
     const nameValue = document.getElementById("name");
@@ -77,7 +83,7 @@ const EditAccount = () => {
         </Form>
       </main>
       <footer className="p-6 relative bottom-0">
-        <Button className={`save-btn ${edited ? "active" : "inactive"}`} disabled={edited ? false : true}>บันทึก</Button>
+        <Button type='submit' className={`save-btn ${edited ? "active" : "inactive"}`} disabled={edited ? false : true}>บันทึก</Button>
       </footer>
     </div>
   )
