@@ -2,6 +2,10 @@
 
 Honda Application
 
+This app is installed using Frappe Bench. To install it, please type this command on Terminal.
+
+bench get-app https://github.com/MarkSuttirak/hondanont.git
+
 #### License
 
 MIT
