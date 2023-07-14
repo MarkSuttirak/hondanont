@@ -58,10 +58,12 @@ const EditAccount = () => {
         <h2 className="font-bold">ข้อมูลส่วนตัว</h2>
         <Form form={form}>
           <label className="inline-block mt-4 text-sm">ชื่อ-นามสกุล</label>
-          {!isLoading && (
+          {!isLoading ? (
             <Form.Item name = "name" className="mb-0"> 
               <Input className="w-full mt-2 input-account" defaultValue={user && user.full_name} id="name" placeholder="ชื่อ-นามสกุล" onInput={typeInfo}/>
             </Form.Item>
+          ) : (
+            <Skeleton.Input size="large" active block className="mt-1"/>
           )}
 
           <label className="inline-block mt-4 text-sm">เลขบัตรประจำตัวบัตรประชาชน</label>
@@ -75,10 +77,12 @@ const EditAccount = () => {
           </Form.Item>
 
           <label className="inline-block mt-4 text-sm">อีเมล</label>
-          {!isLoading && (
+          {!isLoading ? (
             <Form.Item name = "emailvalues"> 
               <Input type="email" className="w-full mt-2 input-account" defaultValue={user && user.email} id="emailvalues"  placeholder="example@mail.com" onInput={typeInfo}/>
             </Form.Item>
+          ) : (
+            <Skeleton.Input size="large" active block className="mt-1"/>
           )}
         </Form>
       </main>
