@@ -12,7 +12,9 @@
   "points",
   "image",
   "type",
-  "status"
+  "status",
+  "tabone",
+  "text"
  ],
  "fields": [
   {
@@ -47,11 +49,21 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Active\nUsed"
+  },
+  {
+   "fieldname": "tabone",
+   "fieldtype": "Tab Break",
+   "label": "Tab One"
+  },
+  {
+   "fieldname": "text",
+   "fieldtype": "Data",
+   "label": "Text"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-13 09:48:39.862433",
+ "modified": "2023-07-14 17:07:09.553374",
  "modified_by": "Administrator",
  "module": "Hondanont",
  "name": "Reward List",

@@ -10,8 +10,8 @@ const EditAccount = () => {
   const [form] = Form.useForm();
   const [edited, isEdited] = useState(false);
 
-  const { data: user, isLoading } = useFrappeGetDoc('User', 'bonnie@mail.com', {
-    fields: ['full_name', 'email']
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
+    fields: ['customer_name', 'image']
   })
 
   const { updateDoc } = useFrappeUpdateDoc();

@@ -38,8 +38,12 @@ const LandingPage = () => {
     )
   }
 
-  const { data: user } = useFrappeGetDoc('User', 'bonnie@mail.com', {
-    fields: ['full_name']
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
+    fields: ['customer_name']
+  })
+
+  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Bonnie Yang', {
+    fields: ['loyalty_points']
   })
 
   // const { data: allData, isLoading, error, mutate } = useFrappeGetDocList('Item', {
@@ -67,7 +71,7 @@ const LandingPage = () => {
         <div className="columns-2 px-6 py-4">
           <div id='say-hello'>
             <h2 className="secondary-color font-medium text-sm"><span style={{color:"black"}}>👋</span> สวัสดีคุณ,<br/>
-              <span id="user-name" className="whitespace-pre mt-1 inline-block text-black font-with-inter" style={{fontSize:"16px"}}>{user && user.full_name}</span>
+              <span id="user-name" className="whitespace-pre mt-1 inline-block text-black font-with-inter" style={{fontSize:"16px"}}>{user && user.customer_name}</span>
             </h2>
           </div>
           <h2 className="text-right secondary-color font-medium text-sm">คุณมีคะแนน<br/>

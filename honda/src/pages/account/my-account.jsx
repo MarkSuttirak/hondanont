@@ -26,8 +26,8 @@ const MyAccount = () => {
     setLogoutModal(false)
   }
 
-  const { data: user, isLoading } = useFrappeGetDoc('User', 'bonnie@mail.com', {
-    fields: ['full_name', 'user_image']
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
+    fields: ['customer_name', 'image', 'dashboard_tab']
   })
 
   const CardAccount = (props) => {
@@ -59,7 +59,7 @@ const MyAccount = () => {
                 width:"100%",
                 height:"auto"
               }}
-              src={user.user_image}
+              src={user.image}
             />
             )}</>
             ) : (
@@ -67,12 +67,12 @@ const MyAccount = () => {
             )}
           </div>
           <div className="block ml-32">
-            {!isLoading ? (<h1 className="font-with-inter text-color text-xl font-medium">{user && user.full_name}</h1>) : (<Skeleton.Input active style={{maxWidth:"60px",minWidth:"0",marginBottom:"4px"}}/>)}
+            {!isLoading ? (<h1 className="font-with-inter text-color text-xl font-medium">{user && user.customer_name}</h1>) : (<Skeleton.Input active style={{maxWidth:"60px",minWidth:"0",marginBottom:"4px"}}/>)}
             <p className="primary-color">Classic Member</p>
 
             <div className="columns-2 mt-4">
               <div className="block pr-2" style={{borderRight:"1px solid #0000001A"}}>
-                <h1 className="font-with-inter primary-color text-3xl font-semibold">100</h1>
+                <h1 className="font-with-inter primary-color text-3xl font-semibold">{user && user.dashboard_tab}</h1>
                 <p className="text-xs font-semibold whitespace-pre">คะแนนที่คุณมี</p>
               </div>
               <div className="block pl-2">
