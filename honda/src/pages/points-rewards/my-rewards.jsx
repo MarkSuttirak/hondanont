@@ -28,6 +28,7 @@ const Rewards = () => {
       <main className="p-6">
         <h2 className="font-bold mb-2">รางวัลของฉัน</h2>
         <CardReward />
+        <CardReward />
       </main>
       <FooterMenu activeMenu={2}/>
     </div>

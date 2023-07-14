@@ -10,6 +10,7 @@ import silverCard from '../assets/images/silver-card.png'
 import goldCard from '../assets/images/gold-card.png'
 import platinumCard from '../assets/images/platinum-card.png'
 import FooterMenu from '../components/footer-menu';
+import RewardSection from '../components/reward-section';
 import { Link, useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
@@ -41,19 +42,19 @@ const LandingPage = () => {
     fields: ['full_name']
   })
 
-  const { data: allData, isLoading, error, mutate } = useFrappeGetDocList('Item', {
-    fields: ['item_code','item_name', 'item_group', 'image', 'points']
-  })
+  // const { data: allData, isLoading, error, mutate } = useFrappeGetDocList('Item', {
+  //   fields: ['item_code','item_name', 'item_group', 'image', 'points']
+  // })
 
-  const { data: freeProduct } = useFrappeGetDocList('Item', {
-    fields: ['item_code','item_name', 'item_group', 'image', 'points'],
-    filters: [['item_group','=','Free Product']]
-  })
+  // const { data: freeProduct } = useFrappeGetDocList('Item', {
+  //   fields: ['item_code','item_name', 'item_group', 'image', 'points'],
+  //   filters: [['item_group','=','Free Product']]
+  // })
 
-  const { data: cashCoupon } = useFrappeGetDocList('Item', {
-    fields: ['item_code','item_name', 'item_group', 'image', 'points'],
-    filters: [['item_group','=','Cash Coupon']]
-  })
+  // const { data: cashCoupon } = useFrappeGetDocList('Item', {
+  //   fields: ['item_code','item_name', 'item_group', 'image', 'points'],
+  //   filters: [['item_group','=','Cash Coupon']]
+  // })
 
   return (
     <>
@@ -118,52 +119,8 @@ const LandingPage = () => {
             </Link>
           </div>
         </section>
-
         <section className="mt-7 py-6 pb-20" style={{backgroundColor:"#F8F8F8",borderRadius:"12px 12px 0 0"}}>
-        {allData && (
-          <>
-            <h2 className="font-bold mb-2 px-6">ของรางวัลทั้งหมด</h2>
-            {isLoading ? (
-              <h1>Test</h1>
-            ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
-                {allData.map((item)=>
-                  <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
-                )}
-              </div>
-            )}
-          </>
-        )}
-
-        {freeProduct && (
-          <div className='mt-4'>
-            <h2 className="font-bold mb-2 px-6">ของรางวัล</h2>
-            {isLoading ? (
-              <h1>Test</h1>
-            ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
-                {freeProduct.map((item)=>
-                  <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-
-        {cashCoupon && (
-          <div className='mt-4'>
-            <h2 className="font-bold mb-2 px-6">คูปองแทนเงินสด</h2>
-            {isLoading ? (
-              <h1>Test</h1>
-            ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
-                {cashCoupon.map((item)=>
-                  <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
-                )}
-              </div>
-            )}
-          </div>
-        )}
+          <RewardSection />
         </section>
       </main>
 

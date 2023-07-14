@@ -14,6 +14,7 @@ import MemberCondition from './pages/account/memberCondition';
 import TermsAndConditions from './pages/account/termsAndConditions';
 import Redemption from './pages/points-rewards/redemption';
 import EditAccount from './pages/account/edit-account';
+import RewardsPage from './pages/points-rewards/rewards';
 
 import LoginPage from './pages/login/login';
 import FillPhone from './pages/login/fill-phone';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/terms-and-conditions" element={<TermsAndConditions />}/>
           <Route path="/reward/:id" element={<Redemption />}/>
           <Route path="/edit-account" element={<EditAccount />}/>
+          <Route path="/rewards" element={<RewardsPage />}/>
 
           <Route path="/login" element={<LoginPage />}/>
           <Route path="/fill-phone" element={<FillPhone />}/>

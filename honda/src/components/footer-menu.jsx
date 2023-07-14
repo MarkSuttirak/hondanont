@@ -15,7 +15,7 @@ const FooterMenu = (props) => {
             </Link>
           </li>
           <li className={`text-sm inline-block text-center w-1/4 bg-white ${(props.activeMenu === 2 ? "primary-color" : "menu-inactive-color")}`}>
-            <Link to="/my-rewards">
+            <Link to="/rewards">
               <FontAwesomeIcon icon={faGift} className="block text-xl m-auto"/>
               <span className={`mt-1 inline-block ${(props.activeMenu === 2 ? "font-bold" : "font-medium")}`}>แลกของรางวัล</span>
             </Link>
