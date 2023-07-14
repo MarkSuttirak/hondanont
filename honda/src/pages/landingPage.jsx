@@ -38,11 +38,11 @@ const LandingPage = () => {
     )
   }
 
-  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Mingyan Zhu', {
     fields: ['customer_name']
   })
 
-  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Bonnie Yang', {
+  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Mingyan Zhu', {
     fields: ['loyalty_points']
   })
 
@@ -77,7 +77,7 @@ const LandingPage = () => {
           <h2 className="text-right secondary-color font-medium text-sm">คุณมีคะแนน<br/>
             <span id="points" className="text-xl primary-color font-with-inter font-semibold">
               <FontAwesomeIcon icon={faStar} className="mr-2"/>
-              <span className="font-with-inter">100</span> คะแนน
+              <span className="font-with-inter">{userPoints && userPoints.loyalty_points}</span> คะแนน
             </span>
           </h2>
         </div>

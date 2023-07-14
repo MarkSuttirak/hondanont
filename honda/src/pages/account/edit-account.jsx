@@ -10,8 +10,8 @@ const EditAccount = () => {
   const [form] = Form.useForm();
   const [edited, isEdited] = useState(false);
 
-  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
-    fields: ['customer_name', 'image']
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Mingyan Zhu', {
+    fields: ['customer_name']
   })
 
   const { updateDoc } = useFrappeUpdateDoc();
@@ -60,7 +60,7 @@ const EditAccount = () => {
           <label className="inline-block mt-4 text-sm">ชื่อ-นามสกุล</label>
           {!isLoading ? (
             <Form.Item name = "name" className="mb-0"> 
-              <Input className="w-full mt-2 input-account" defaultValue={user && user.full_name} id="name" placeholder="ชื่อ-นามสกุล" onInput={typeInfo}/>
+              <Input className="w-full mt-2 input-account" defaultValue={user && user.customer_name} id="name" placeholder="ชื่อ-นามสกุล" onInput={typeInfo}/>
             </Form.Item>
           ) : (
             <Skeleton.Input size="large" active block className="mt-1"/>

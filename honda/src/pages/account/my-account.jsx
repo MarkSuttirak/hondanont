@@ -26,8 +26,12 @@ const MyAccount = () => {
     setLogoutModal(false)
   }
 
-  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
-    fields: ['customer_name', 'image', 'dashboard_tab']
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Mingyan Zhu', {
+    fields: ['customer_name', 'image']
+  })
+
+  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Mingyan Zhu', {
+    fields: ['loyalty_points']
   })
 
   const CardAccount = (props) => {
@@ -72,11 +76,11 @@ const MyAccount = () => {
 
             <div className="columns-2 mt-4">
               <div className="block pr-2" style={{borderRight:"1px solid #0000001A"}}>
-                <h1 className="font-with-inter primary-color text-3xl font-semibold">{user && user.dashboard_tab}</h1>
+                <h1 className="font-with-inter primary-color text-3xl font-semibold">{userPoints ? userPoints.loyalty_points : '0'}</h1>
                 <p className="text-xs font-semibold whitespace-pre">คะแนนที่คุณมี</p>
               </div>
               <div className="block pl-2">
-                <h1 className="font-with-inter primary-color text-3xl font-semibold">200</h1>
+                <h1 className="font-with-inter primary-color text-3xl font-semibold">0</h1>
                 <p className="text-xs font-semibold whitespace-pre">คะแนนที่คุณเคยใช้</p>
               </div>
             </div>
