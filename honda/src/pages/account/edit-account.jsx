@@ -87,7 +87,7 @@ const EditAccount = () => {
         </Form>
       </main>
       <footer className="p-6 relative bottom-0">
-        <Button type='submit' className={`save-btn ${edited ? "active" : "inactive"}`} disabled={edited ? false : true}>บันทึก</Button>
+        <Button onClick={onUpdate} type='submit' className={`save-btn ${edited ? "active" : "inactive"}`} disabled={edited ? false : true}>บันทึก</Button>
       </footer>
     </div>
   )
