@@ -41,7 +41,7 @@ const RewardSection = () => {
     <>
         {allData && (
           <>
-            <h2 className="font-bold mb-2 px-6">ของรางวัลทั้งหมด</h2>
+            <h2 className="font-bold mb-2 px-6">ของรางวัลทั้งหมด ({allData.length})</h2>
             {isLoading ? (
               <h1>Test</h1>
             ) : (
@@ -56,7 +56,7 @@ const RewardSection = () => {
 
         {freeProduct && (
           <div className='mt-4'>
-            <h2 className="font-bold mb-2 px-6">ของรางวัล</h2>
+            <h2 className="font-bold mb-2 px-6">ของรางวัล ({freeProduct.length})</h2>
             {isLoading ? (
               <h1>Test</h1>
             ) : (
@@ -71,7 +71,7 @@ const RewardSection = () => {
 
         {cashCoupon && (
           <div className='mt-4'>
-            <h2 className="font-bold mb-2 px-6">คูปองแทนเงินสด</h2>
+            <h2 className="font-bold mb-2 px-6">คูปองแทนเงินสด ({cashCoupon.length})</h2>
             {isLoading ? (
               <h1>Test</h1>
             ) : (

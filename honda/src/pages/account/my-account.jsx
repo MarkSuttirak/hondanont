@@ -26,11 +26,9 @@ const MyAccount = () => {
     setLogoutModal(false)
   }
 
-  const { data: user } = useFrappeGetDoc('User', 'bonnie@mail.com', {
+  const { data: user, isLoading } = useFrappeGetDoc('User', 'bonnie@mail.com', {
     fields: ['full_name', 'user_image']
   })
-
-  console.log(user);
 
   const CardAccount = (props) => {
     return (
@@ -52,7 +50,9 @@ const MyAccount = () => {
       <main>
         <section className="p-6">
           <div className="block float-left">
-            {user && (
+            {!isLoading ? (
+              <>
+              {user && (
               <Avatar
               style={{
                 maxWidth:"114px",
@@ -61,10 +61,13 @@ const MyAccount = () => {
               }}
               src={user.user_image}
             />
+            )}</>
+            ) : (
+              <Skeleton.Avatar active size={114}/>
             )}
           </div>
           <div className="block ml-32">
-            <h1 className="font-with-inter text-color text-xl font-medium">{user && user.full_name}</h1>
+            {!isLoading ? (<h1 className="font-with-inter text-color text-xl font-medium">{user && user.full_name}</h1>) : (<Skeleton.Input active style={{maxWidth:"60px",minWidth:"0",marginBottom:"4px"}}/>)}
             <p className="primary-color">Classic Member</p>
 
             <div className="columns-2 mt-4">
