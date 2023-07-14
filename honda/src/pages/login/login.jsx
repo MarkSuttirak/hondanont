@@ -28,6 +28,10 @@ const LoginPage = () => {
     }
   }
 
+  const acceptedPolicy = () => {
+    window.location.href = '/fill-phone'
+  }
+
   return (
     <div className="text-center" style={{marginTop:"25vh"}}>
       <img src={LogoHonda} width="40%" className="m-auto"/>
@@ -81,7 +85,7 @@ const LoginPage = () => {
 
       <Checkbox onChange={checkBox} className="my-10">ข้าพเจ้าได้อ่าน และ ยินยอมให้ข้อมูลส่วนบุคคล</Checkbox>
 
-      <Button className={`save-btn ${checkedBox ? "active" : "inactive"}`} disabled={checkedBox ? false : true}>บันทึก</Button>
+      <Button onClick={acceptedPolicy} className={`save-btn ${checkedBox ? "active" : "inactive"}`} disabled={checkedBox ? false : true}>บันทึก</Button>
       <div style={{width:"100%",height:"26px"}}></div>
     </Modal>
   </div>

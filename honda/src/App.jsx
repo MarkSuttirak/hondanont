@@ -16,6 +16,9 @@ import Redemption from './pages/points-rewards/redemption';
 import EditAccount from './pages/account/edit-account';
 
 import LoginPage from './pages/login/login';
+import FillPhone from './pages/login/fill-phone';
+import FillInfo from './pages/login/fill-info';
+import Ready from './pages/login/ready';
 
 function App() {
   return (
@@ -35,6 +38,9 @@ function App() {
           <Route path="/edit-account" element={<EditAccount />}/>
 
           <Route path="/login" element={<LoginPage />}/>
+          <Route path="/fill-phone" element={<FillPhone />}/>
+          <Route path="/fill-info" element={<FillInfo />}/>
+          <Route path="/ready" element={<Ready />}/>
         </Routes>
       </BrowserRouter>
     </FrappeProvider>

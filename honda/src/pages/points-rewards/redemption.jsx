@@ -12,6 +12,12 @@ import { useParams } from "react-router-dom";
 
 const Redemption = () => {
   document.body.style.backgroundColor = "white";
+  const [like, setLike] = useState(false);
+  const [usrreward, setUsrreward] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [btnisactive, setbtnisactive] = useState(true);
+  const [formsubmitloader, setformsubmitloader] = useState(false);
+  const [showerror, setshowerror] = useState(false);
 
   const { Panel } = Collapse;
 
@@ -35,6 +41,48 @@ const Redemption = () => {
     }
   })
 
+  const [acceptRedemption, setAcceptRedemption] = useState(false);
+  const [notEnough, setNotEnough] = useState(false);
+
+  const showModalRedemption = () => {
+    setAcceptRedemption(true);
+  }
+
+  const closeModalRedemption = () => {
+    setAcceptRedemption(false);
+  }
+
+  const [accepted, setAccepted] = useState(false);
+
+  const showModalAccepted = () => {
+    if(btnisactive){
+      setformsubmitloader(true);
+      buythisreward();
+    }
+  }
+
+  const buythisreward = () => {
+    setbtnisactive(false);
+    setAcceptRedemption(false);
+  }
+
+  const showNotEnough = () => {
+    setAcceptRedemption(false);
+    setNotEnough(true);
+  }
+
+  const closeModalNotEnough = () => {
+    setNotEnough(false);
+  }
+
+  const pressCheckReward = () => {
+    window.location.replace("/my-rewards");
+  }
+
+  const closeModalAccepted = () => {
+    setAccepted(false);
+  }
+
   return (
     <div>
       <HeaderMobile firstIcon={faChevronLeft} title={(<img src={HondaNon} width="94px" style={{margin:"auto"}}/>)} secondBtn={false} />
@@ -49,6 +97,19 @@ const Redemption = () => {
                   <Skeleton.Input active size="large" style={{marginTop:"4px"}}/>
                 </div>
               </div>
+
+              <div className="grid grid-cols-2 mt-4 pb-2">
+                <div className="block pr-4" style={{borderRight:"1px solid #0000001A"}}>
+                  <p className="text-xs" style={{color:"#00000061"}}>คะแนนที่ใช้</p>
+                  <Skeleton.Input active size="small"/>
+                </div>
+                <div className="block pl-4">
+                  <p className="text-xs" style={{color:"#00000061"}}>คูปองมีอายุการใช้งานภายใน</p>
+                  <Skeleton.Input active size="small"/>
+                </div>
+              </div>
+
+              <Skeleton style={{width:"100vw",height:"280px"}}/>
             </div>
           </>
         ) : (
@@ -146,6 +207,37 @@ const Redemption = () => {
           </>
         )}
       </main>
+      <footer className="p-6 fixed bottom-0 w-full">
+        <Button className="save-btn active" onClick={showModalRedemption}>
+          <Space>
+            <FontAwesomeIcon icon={faGift}/>
+            <span>แลกของรางวัล</span>
+          </Space>
+        </Button>
+      </footer>
+
+      <Modal className="popup-modal text-center" confirmLoading={formsubmitloader} closable={false} open={acceptRedemption} onCancel={closeModalRedemption} onOk={showModalAccepted} okText="ยืนยันการแลก" cancelText="ยกเลิก">
+        <h2 className="primary-color mb-2">
+          <span className="text-lg font-bold inline-block">ยืนยันการแลกของรางวัล</span>
+        </h2>
+        <p className="modal-text-color">หลังจากกด “ยืนยันการแลก” <br/>คุณสามารถเก็บไว้ใช้ภายหลังได้</p>
+      </Modal>
+
+      <Modal className="popup-modal text-center one-btn" closable={false} open={accepted} onCancel={closeModalAccepted} onOk={pressCheckReward} okText="ดูรางวัลของฉัน">
+        <h2 className="primary-color mb-2">
+          <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"54px"}}/><br/>
+          <span className="text-lg font-bold mt-5 inline-block">แลกของรางวัลสำเร็จ</span>
+        </h2>
+        <p className="modal-text-color">สามารถกด “ดูรางวัลของฉัน” <br/>เพื่อแลกของรางวัลได้เลย</p>
+      </Modal>
+
+      <Modal className="popup-modal text-center one-btn" closable={true} open={notEnough} onOk={closeModalNotEnough} okText="ตกลง">
+        <h2 className="primary-color mb-2">
+          <FontAwesomeIcon icon={faCircleXmark} style={{fontSize:"54px"}}/><br/>
+          <span className="text-lg font-bold mt-5 inline-block">คะแนนของคุณไม่เพียงพอ</span>
+        </h2>
+        <p className="modal-text-color">แลกของรางวัลไม่สำเร็จ<br/>{showerror}</p>
+      </Modal>
     </div>
   )
 }
