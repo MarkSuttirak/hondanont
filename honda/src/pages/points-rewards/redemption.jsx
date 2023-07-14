@@ -34,6 +34,8 @@ const Redemption = () => {
     fields: ['item_name', 'item_group', 'image', 'points', 'description']
   })
 
+  console.log(data);
+
   useFrappeDocumentEventListener('Item', (d) => {
     console.log(d);
     if (d.doctype === 'Item'){
@@ -109,7 +111,7 @@ const Redemption = () => {
                 </div>
               </div>
 
-              <Skeleton style={{width:"100vw",height:"280px"}}/>
+              <Skeleton style={{height:"280px"}}/>
             </div>
           </>
         ) : (
@@ -199,7 +201,7 @@ const Redemption = () => {
                     </Panel>
                   </Collapse>
                 ) : (
-                  <Skeleton style={{width:"100vw",height:"280px"}}/>
+                  <Skeleton style={{height:"280px"}}/>
                 ))}
               </div>
             </>
