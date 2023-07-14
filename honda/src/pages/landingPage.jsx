@@ -88,7 +88,7 @@ const LandingPage = () => {
               </div>
 
               <div className="inline-block w-1/2 text-right">
-                <Link>
+                <Link to='/my-rewards'>
                   <Button size="large"
                     className="bg-white px-4"
                     style={{

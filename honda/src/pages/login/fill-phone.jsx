@@ -27,13 +27,14 @@ const FillPhone = () => {
     let phoneInput = document.getElementById("phone-input").value;
     phoneInput.replace('-', '');
     
-    setFilled(false);
+    setFilled(true);
     setTimeout(() => {
       if (phoneInput === ""){
         setMustFillPhone(true);
         setFilled(true);
       } else {
-        setPass(true)
+        setHideBtn(true);
+        setPass(true);
       }
     }, 1000)
   }
@@ -83,9 +84,9 @@ const FillPhone = () => {
     let phone = document.getElementById("phone-input");
     let dashPos = phone.value.indexOf("-");
     if (dashPos === -1 && phone.value.length > 3 && event.inputType !== 'deleteContentBackward') {
-     // phone.value = phone.value.slice(0, 3) + "-" + phone.value.slice(3);
+     phone.value = phone.value.slice(0, 3) + "-" + phone.value.slice(3);
     } else if (dashPos === 3 && phone.value.length === 4 && event.inputType !== 'deleteContentBackward'){
-     // phone.value = phone.value.slice(0, 3) + phone.value.slice(4);
+     phone.value = phone.value.slice(0, 3) + phone.value.slice(4);
     }
   }
 

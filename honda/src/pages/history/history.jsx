@@ -13,17 +13,32 @@ const History = () => {
       <main className="p-6 tabs-menu bg-[#F8F8F8] h-full">
         <div className="mb-4 card-history">
           <Card bordered={false}>
-              <div className="columns-2 flex items-center justify-between">
-                <div className="block history-title">
-                  <h2 className="text-color font-bold text-base" style={{overflow:"hidden",textOverflow:"ellipsis"}}>Test</h2>
-                </div>
-                <div className="block transaction-title">
-                  <h2 className={`font-semibold text-center text-xs text-white transaction `}>Used</h2>
-                </div>
-                <div className="block point-title">
-                  <h2 className="primary-color font-bold text-right text-base">+10 คะแนน</h2>
-                </div>
+            <div className="columns-2 flex items-center justify-between">
+              <div className="block history-title">
+                <h2 className="text-color font-bold text-base" style={{overflow:"hidden",textOverflow:"ellipsis"}}>Test</h2>
               </div>
+              <div className="block transaction-title">
+                <h2 className={`font-semibold text-center text-xs text-white transaction `}>Used</h2>
+              </div>
+              <div className="block point-title">
+                <h2 className="primary-color font-bold text-right text-base">+10 คะแนน</h2>
+              </div>
+            </div>
+          </Card>
+        </div>
+        <div className="mb-4 card-history">
+          <Card bordered={false}>
+            <div className="columns-2 flex items-center justify-between">
+              <div className="block history-title">
+                <h2 className="text-color font-bold text-base" style={{overflow:"hidden",textOverflow:"ellipsis"}}>Test</h2>
+              </div>
+              <div className="block transaction-title">
+                <h2 className={`font-semibold text-center text-xs text-white transaction `}>Used</h2>
+              </div>
+              <div className="block point-title">
+                <h2 className="primary-color font-bold text-right text-base">+10 คะแนน</h2>
+              </div>
+            </div>
           </Card>
         </div>
       </main> 
