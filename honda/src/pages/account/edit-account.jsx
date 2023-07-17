@@ -10,14 +10,14 @@ const EditAccount = () => {
   const [form] = Form.useForm();
   const [edited, isEdited] = useState(false);
 
-  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Mingyan Zhu', {
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
     fields: ['customer_name']
   })
 
   const { updateDoc } = useFrappeUpdateDoc();
 
   const onUpdate = (info) => {
-    updateDoc('User', 'bonnie@mail.com', info)
+    updateDoc('Customer', 'Bonnie Yang', info)
   }
 
   const typeInfo = () => {
@@ -49,7 +49,7 @@ const EditAccount = () => {
       input = result;
     }
     event.target.value = input;
-  }  
+  }
 
   return (
     <div>

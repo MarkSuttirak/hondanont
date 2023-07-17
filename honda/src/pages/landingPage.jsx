@@ -38,11 +38,11 @@ const LandingPage = () => {
     )
   }
 
-  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Mingyan Zhu', {
+  const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
     fields: ['customer_name']
   })
 
-  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Mingyan Zhu', {
+  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Bonnie Yang', {
     fields: ['loyalty_points']
   })
 

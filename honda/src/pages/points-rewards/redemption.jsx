@@ -34,7 +34,9 @@ const Redemption = () => {
     fields: ['item_name', 'item_group', 'image', 'points', 'description']
   })
 
-  console.log(data);
+  const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Bonnie Yang', {
+    fields: ['loyalty_points']
+  })
 
   useFrappeDocumentEventListener('Item', (d) => {
     console.log(d);
@@ -64,8 +66,17 @@ const Redemption = () => {
   }
 
   const buythisreward = () => {
-    setbtnisactive(false);
-    setAcceptRedemption(false);
+    if (data && userPoints) {
+      if (data.points > userPoints.loyalty_points) {
+        setformsubmitloader(false);
+        setAcceptRedemption(false);
+        showNotEnough()
+      } else {
+        setformsubmitloader(false);
+        setAcceptRedemption(false);
+        setAccepted(true);
+      }
+    }
   }
 
   const showNotEnough = () => {
