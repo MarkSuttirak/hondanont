@@ -16,27 +16,11 @@ import { Link, useNavigate } from 'react-router-dom'
 const LandingPage = () => {
   document.body.style.backgroundColor = "white";
   const [classic, setClassic] = useState(true);
-  const [silver, setSilver] = useState(true);
+  const [silver, setSilver] = useState(false);
   const [gold, setGold] = useState(false);
   const [platinum, setPlatinum] = useState(false);
 
   const navigate = useNavigate();
-
-  function showConfirm(props) {
-    navigate("/reward/"+props.rewardid);
-  }
-
-  const CardReward = (props) => {
-    return (
-      <Card onClick={() => showConfirm(props)} className="reward-cards" cover={(<img src={props.image}/>)} bodyStyle={{padding:"10px 17px 18px 17px"}} key={props.name}>
-        <h2 className="font-bold text-sm pe-3">{props.name}</h2>
-        <h3 className="primary-color font-semibold mt-2 text-sm">
-          <FontAwesomeIcon icon={faStar} className="mr-1"/>
-          {props.point} คะแนน
-        </h3>
-      </Card>
-    )
-  }
 
   const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
     fields: ['customer_name']
@@ -45,20 +29,6 @@ const LandingPage = () => {
   const { data: userPoints } = useFrappeGetDoc('Loyalty Point Entry', 'Bonnie Yang', {
     fields: ['loyalty_points']
   })
-
-  // const { data: allData, isLoading, error, mutate } = useFrappeGetDocList('Item', {
-  //   fields: ['item_code','item_name', 'item_group', 'image', 'points']
-  // })
-
-  // const { data: freeProduct } = useFrappeGetDocList('Item', {
-  //   fields: ['item_code','item_name', 'item_group', 'image', 'points'],
-  //   filters: [['item_group','=','Free Product']]
-  // })
-
-  // const { data: cashCoupon } = useFrappeGetDocList('Item', {
-  //   fields: ['item_code','item_name', 'item_group', 'image', 'points'],
-  //   filters: [['item_group','=','Cash Coupon']]
-  // })
 
   return (
     <>
@@ -83,7 +53,7 @@ const LandingPage = () => {
         </div>
 
         <section className="px-6 member-card">
-          <Card style={{backgroundImage:`url(${classicCard})`}}>
+          <Card style={{backgroundImage:`url(${classic ? classicCard : silver ? silverCard : gold ? goldCard : platinumCard})`}}>
             <div className='columns-1 flex items-end'>
               <div className="inline-block w-1/2">
                 <h1 className="text-white text-3xl font-with-inter font-medium">Classic</h1>

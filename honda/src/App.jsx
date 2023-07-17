@@ -23,6 +23,9 @@ import FillPhone from './pages/login/fill-phone';
 import FillInfo from './pages/login/fill-info';
 import Ready from './pages/login/ready';
 
+import BlogAdmin from './pages/admin/blog-admin';
+import BlogEdit from './pages/admin/blog-edit';
+
 function App() {
   return (
     <FrappeProvider socketPort={import.meta.env.VITE_SOCKET_PORT ?? ''}>
@@ -47,6 +50,9 @@ function App() {
           <Route path="/fill-phone" element={<FillPhone />}/>
           <Route path="/fill-info" element={<FillInfo />}/>
           <Route path="/ready" element={<Ready />}/>
+
+          <Route path="/blog-admin" element={<BlogAdmin />}/>
+          <Route path="/blog-edit/:id" element={<BlogEdit />}/>
         </Routes>
       </BrowserRouter>
     </FrappeProvider>

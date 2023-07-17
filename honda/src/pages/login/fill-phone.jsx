@@ -5,6 +5,8 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input, Button, Modal } from "antd";
+import { useFrappeGetDoc, useFrappeGetDocList } from "frappe-react-sdk";
+import { useParams } from "react-router-dom";
 
 const FillPhone = () => {
   const [filled, setFilled] = useState(true);
@@ -23,10 +25,19 @@ const FillPhone = () => {
     }
   }
 
+  const { id } = useParams();
+
+  const { data } = useFrappeGetDocList('Contact', {
+    fields: ['name', 'phone'],
+    filters: [['phone', '!=', null]]
+  })
+
+  console.log(data);
+
   const handleFilled = () => {
     let phoneInput = document.getElementById("phone-input").value;
     phoneInput.replace('-', '');
-    
+
     setFilled(true);
     setTimeout(() => {
       if (phoneInput === ""){
@@ -105,7 +116,11 @@ const FillPhone = () => {
   }
 
   const verifyotpnow = () => {
-    window.location.href = '/fill-info'
+    if (data && data.phone !== null){
+      window.location.href = '/'
+    } else {
+      window.location.href = '/fill-info'
+    }
   }
 
   const newOTP = (e) => {
@@ -148,8 +163,6 @@ const FillPhone = () => {
                   (regenerateOTP && <p className="text-black text-sm mt-4 mb-2">ขอรหัส OTP ใหม่อีกครั้งใน <CountdownTimer /> วินาที</p>)
                 }
               </div>
-
-              
 
               <Button onClick={verifyotpnow} className={`save-btn mt-12 ${regenerateOTP ? "active" : "inactive"}`} disabled={regenerateOTP ? false : true}>ยืนยัน OTP</Button>
               <div className="mt-4 text-center">
