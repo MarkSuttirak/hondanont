@@ -16,6 +16,7 @@ import Redemption from './pages/points-rewards/redemption';
 import EditAccount from './pages/account/edit-account';
 import RewardsPage from './pages/points-rewards/rewards';
 import ToRedeem from './pages/points-rewards/to-redeem';
+import CouponRedemption from './pages/points-rewards/coupon-redemption';
 
 import LoginPage from './pages/login/login';
 import FillPhone from './pages/login/fill-phone';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/edit-account" element={<EditAccount />}/>
           <Route path="/rewards" element={<RewardsPage />}/>
           <Route path="/to-redeem" element={<ToRedeem />}/>
+          <Route path="/coupon-redemption" element={<CouponRedemption />}/>
 
           <Route path="/login" element={<LoginPage />}/>
           <Route path="/fill-phone" element={<FillPhone />}/>

@@ -4,6 +4,7 @@ import { faChevronLeft, faClockRotateLeft } from "@fortawesome/free-solid-svg-ic
 import FooterMenu from "../../components/footer-menu";
 import HeaderMobile from "../../components/header";
 import giftVoucher from '../../assets/images/gift-voucher.png'
+import { Link } from "react-router-dom";
 
 const Rewards = () => {
   document.body.style.backgroundColor = "#F8F8F8";
@@ -16,7 +17,9 @@ const Rewards = () => {
           <p className="text-xs absolute bottom-[6px] text-[#00000099]">สามารถใช้ได้ถึง 12/07/2023</p>
           <h6 className="text-color text-base pr-1">123456</h6>
 
-          <Button type='dashed'>Used</Button>
+          <Link to='/coupon-redemption'>
+            <Button type='dashed'>แลกคูปอง</Button>
+          </Link>
         </Card>
       </div>
     )
