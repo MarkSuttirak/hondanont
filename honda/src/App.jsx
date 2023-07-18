@@ -25,6 +25,8 @@ import Ready from './pages/login/ready';
 
 import BlogAdmin from './pages/admin/blog-admin';
 import BlogEdit from './pages/admin/blog-edit';
+import BlogAdd from './pages/admin/blog-add';
+import BlogView from './pages/admin/blog-view';
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
 
           <Route path="/blog-admin" element={<BlogAdmin />}/>
           <Route path="/blog-edit/:id" element={<BlogEdit />}/>
+          <Route path="/blog-view/:id" element={<BlogView />}/>
+          <Route path="/blog-add" element={<BlogAdd />}/>
         </Routes>
       </BrowserRouter>
     </FrappeProvider>

@@ -3,6 +3,23 @@
 
 input{color:black}
 
+.tox-notifications-container {
+  display:none !important;
+}
+
+#preview {
+  margin-top:40px;
+  h1,h2,h3,h4,h5,h6 {
+    font-weight:revert;
+    font-size:revert;
+  }
+  ol, ul, menu {
+    list-style:revert;
+    margin:revert;
+    padding:revert;
+  }
+}
+
 $primary_color:#F0592A;
 $menu_inactive_color:#BBBBBB;
 $text_color:#231F20;

@@ -9,7 +9,8 @@
  "field_order": [
   "title",
   "content",
-  "category"
+  "category",
+  "blogimage"
  ],
  "fields": [
   {
@@ -22,7 +23,7 @@
   },
   {
    "fieldname": "content",
-   "fieldtype": "Text",
+   "fieldtype": "Text Editor",
    "in_list_view": 1,
    "label": "Content",
    "reqd": 1
@@ -34,11 +35,16 @@
    "label": "Category",
    "options": "Uncategorised",
    "reqd": 1
+  },
+  {
+   "fieldname": "blogimage",
+   "fieldtype": "Attach Image",
+   "label": "Blog Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-17 16:38:39.790124",
+ "modified": "2023-07-18 15:27:28.762588",
  "modified_by": "Administrator",
  "module": "Hondanont",
  "name": "Honda Blogs",

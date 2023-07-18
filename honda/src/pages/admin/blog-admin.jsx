@@ -1,10 +1,11 @@
-import { Table } from "antd";
+import { Button, Table, Image } from "antd";
 import { useFrappeGetDocList } from "frappe-react-sdk";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const BlogAdmin = () => {
   const { data, isLoading, error } = useFrappeGetDocList('Honda Blogs', {
-    fields: ['name', 'title', 'content']
+    fields: ['name', 'blogimage', 'title', 'content', 'category']
   })
 
   const dataSource = [];
@@ -15,7 +16,9 @@ const BlogAdmin = () => {
       {
         key: data[i].name,
         id: data[i].name,
+        image: data[i].blogimage,
         title: data[i].title,
+        category: data[i].category,
         created: '30 min',
       })
     }
@@ -28,9 +31,20 @@ const BlogAdmin = () => {
       key: 'id',
     },
     {
+      title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
+      render: (img) => <Image src={img} width={50}/>
+    },
+    {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
+    },
+    {
+      title: 'Category',
+      dataIndex: 'category',
+      key: 'category',
     },
     {
       title: 'Created',
@@ -40,8 +54,15 @@ const BlogAdmin = () => {
   ]
 
   return (
-    <div className="p-16">
-      <h1>Blogs</h1>
+    <div className='py-16 px-40'>
+      <div className="flex justify-between mb-10">
+        <div>
+          <h1 className="text-xl">Blogs</h1>
+        </div>
+        <Link to="/blog-add">
+          <Button>Add</Button>
+        </Link>
+      </div>
       {data && (
         <Table 
           dataSource={dataSource} columns={columns}
@@ -50,9 +71,6 @@ const BlogAdmin = () => {
               onClick: (event) => {
                 (window.location.href = `/blog-edit/${record.id}`)
               },
-              onMouseEnter: (event) => {
-                this.style.cursor = "pointer";
-              }
             }
           }}
         />
