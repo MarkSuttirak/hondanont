@@ -1,4 +1,4 @@
-import { Button, Form, Input, Space, Upload, notification, Typography } from "antd"
+import { Button, Form, Input, Space, Upload, notification, Typography, Spin } from "antd"
 import TextArea from "antd/es/input/TextArea";
 import { Link, useParams } from "react-router-dom"
 import { useFrappeGetDoc, useFrappeUpdateDoc, useFrappeDeleteDoc } from "frappe-react-sdk"
@@ -8,6 +8,7 @@ import { Editor } from '@tinymce/tinymce-react';
 
 const BlogEdit = () => {
   const [api, contextHolder] = notification.useNotification();
+  const [saving, setSaving] = useState(false);
   const [loadings, setLoadings] = useState([]);
 
   const { Paragraph } = Typography;
@@ -22,6 +23,7 @@ const BlogEdit = () => {
   };
 
   const enterLoading = (index) => {
+    setSaving(true);
     setLoadings((prevLoadings) => {
       const newLoadings = [...prevLoadings];
       newLoadings[index] = true;
@@ -30,6 +32,7 @@ const BlogEdit = () => {
   };
 
   const stopLoading = (index) => {
+    setSaving(false);
     setLoadings((prevLoadings) => {
       const newLoadings = [...prevLoadings];
       newLoadings[index] = false;
@@ -131,31 +134,33 @@ const BlogEdit = () => {
             </div>
             {data && (
               <div className="block mt-10">
-                <Form.Item name="title">
-                  <Input type="text" placeholder="Your title" id="title" defaultValue={data.title} bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off"/>
-                </Form.Item>
-                <Form.Item name="content">
-                  <Editor
-                    initialValue={data.content}
-                    onInit={(evt, editor) => editorRef.current = editor}
-                    onKeyDown={log}
-                    init={{
-                      height: 500,
-                      menubar: false,
-                      plugins: [
-                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                      ],
-                      toolbar: 'undo redo | blocks | ' +
-                        'bold italic forecolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
-                      content_style: 'body { font-family:Sukhumvit Set,Arial,sans-serif; font-size:14px }'
-                    }}
-                  />
-                  <TextArea style={{resize:'none',display:'none'}} placeholder="Your content..." id="content" defaultValue={data.content} className="p-0 text-lg" autoSize bordered={false}/>
-                </Form.Item>
+                <Spin spinning={saving} tip='Saving...'>
+                  <Form.Item name="title">
+                    <Input type="text" placeholder="Your title" id="title" defaultValue={data.title} bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off"/>
+                  </Form.Item>
+                  <Form.Item name="content">
+                    <Editor
+                      initialValue={data.content}
+                      onInit={(evt, editor) => editorRef.current = editor}
+                      onKeyDown={log}
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                          'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                          'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                        ],
+                        toolbar: 'undo redo | blocks | ' +
+                          'bold italic forecolor | alignleft aligncenter ' +
+                          'alignright alignjustify | bullist numlist outdent indent | ' +
+                          'removeformat | help',
+                        content_style: 'body { font-family:Sukhumvit Set,Arial,sans-serif; font-size:14px }'
+                      }}
+                    />
+                    <TextArea style={{resize:'none',display:'none'}} placeholder="Your content..." id="content" defaultValue={data.content} className="p-0 text-lg" autoSize bordered={false}/>
+                  </Form.Item>
+                </Spin>
               </div>
             )}
           </Form>

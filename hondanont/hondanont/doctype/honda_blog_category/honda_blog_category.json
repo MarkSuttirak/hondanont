@@ -1,6 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "autoincrement",
  "creation": "2023-07-17 14:09:43.413341",
  "default_view": "List",
  "doctype": "DocType",
@@ -25,10 +25,11 @@
    "link_fieldname": "Category"
   }
  ],
- "modified": "2023-07-17 14:11:58.189564",
+ "modified": "2023-07-18 17:49:58.894971",
  "modified_by": "Administrator",
  "module": "Hondanont",
  "name": "Honda Blog Category",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,4 +1,4 @@
-import { Button, Form, Input, Space, notification } from "antd"
+import { Button, Form, Input, Space, notification, Spin } from "antd"
 import TextArea from "antd/es/input/TextArea";
 import { Link, useParams } from "react-router-dom"
 import { useFrappeGetDoc, useFrappeUpdateDoc, useFrappeDeleteDoc, useFrappeCreateDoc } from "frappe-react-sdk"
@@ -10,6 +10,7 @@ const BlogAdd = () => {
   const { TextArea } = Input;
 
   const [api, contextHolder] = notification.useNotification();
+  const [saving, setSaving] = useState(false);
   const [loadings, setLoadings] = useState([]);
 
   const editorRef = useRef(null);
@@ -22,6 +23,7 @@ const BlogAdd = () => {
   };
 
   const enterLoading = (index) => {
+    setSaving(true);
     setLoadings((prevLoadings) => {
       const newLoadings = [...prevLoadings];
       newLoadings[index] = true;
@@ -30,6 +32,7 @@ const BlogAdd = () => {
   };
 
   const stopLoading = (index) => {
+    setSaving(false);
     setLoadings((prevLoadings) => {
       const newLoadings = [...prevLoadings];
       newLoadings[index] = false;
@@ -88,6 +91,7 @@ const BlogAdd = () => {
               </div>
             </div>
             <div className="block mt-10">
+              <Spin spinning={saving} tip='Saving...'>
               <Form.Item name="title">
                 <Input type="text" placeholder="Your title" bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off"/>
               </Form.Item>
@@ -112,6 +116,7 @@ const BlogAdd = () => {
                 />
                 <TextArea style={{resize:'none',display:'none'}} id="content" placeholder="Your content..." className="p-0 text-lg" autoSize bordered={false}/>
               </Form.Item>
+              </Spin>
             </div>
           </Form>
         </div>
