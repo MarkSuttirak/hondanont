@@ -20,4 +20,5 @@ yarn add react-router-dom\
 yarn add @fortawesome/free-regular-svg-icons\
 yarn add @fortawesome/free-solid-svg-icons\
 yarn add @fortawesome/react-fontawesome\
-yarn add @fortawesome/fontawesome-svg-core
+yarn add @fortawesome/fontawesome-svg-core\
+yarn add @tinymce/tinymce-react
