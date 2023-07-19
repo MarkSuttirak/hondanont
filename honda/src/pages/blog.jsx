@@ -6,6 +6,7 @@ import { Card, Button, Space, Skeleton } from "antd";
 import { faChevronLeft, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Blog = () => {
+  document.body.style.backgroundColor = "white";
   const { id } = useParams()
 
   const { data } = useFrappeGetDoc('Honda Blogs', id, {

@@ -156,13 +156,13 @@ const BlogEdit = () => {
           {contextHolder}
           <Form onFinish={savePost}>
             <div className="flex justify-between">
-              <div className="flex items-center gap-x-[8px] text-lg">
+              <div className="flex items-center gap-x-[8px] text-2xl">
                 {modified ? (
                   <ArrowLeftOutlined onClick={showModal}/>
                 ) : (
                   <ArrowLeftOutlined onClick={handleOk}/>
                 )}
-                <h1 className="text-xl">Edit post: {data.title}</h1>
+                <h1 className="text-4xl font-bold">Edit post: {data.title}</h1>
               </div>
               <div className="float-right">
                 <Space>

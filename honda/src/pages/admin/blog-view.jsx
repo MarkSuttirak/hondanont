@@ -13,11 +13,11 @@ export default function BlogView() {
     <>
       {data && (
         <div className='py-16 px-40'>
-          <div className="flex items-center gap-x-[8px] text-lg">
+          <div className="flex items-center gap-x-[8px] text-2xl">
             <Link to={`/blog-edit/${id}`} className="flex">
               <ArrowLeftOutlined />
             </Link>
-            <h1 className='text-xl'>You are viewing: {data.title}</h1>
+            <h1 className='text-4xl font-bold'>You are viewing: {data.title}</h1>
           </div>
 
           <div className='mt-10'>

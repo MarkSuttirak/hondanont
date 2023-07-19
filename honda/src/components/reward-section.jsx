@@ -30,7 +30,7 @@ const RewardSection = () => {
       <Link to={`/blog/${props.id}`} style={{height:"100%"}}>
         <Card className="reward-cards h-full" cover={(<img src={props.image}/>)} bodyStyle={{padding:"10px 17px 18px 17px"}} key={props.name}>
           <h2 className="font-bold text-sm pe-3">{props.name}</h2>
-          <h3 className="primary-color font-semibold mt-2 text-sm" dangerouslySetInnerHTML={{ __html:props.desc }}/>
+          <h3 className="primary-color font-semibold mt-2 text-sm h-[40px] overflow-hidden text-ellipsis" dangerouslySetInnerHTML={{ __html:props.desc }}/>
         </Card>
       </Link>
     )
@@ -105,7 +105,7 @@ const RewardSection = () => {
             {isLoading ? (
               <h1>Test</h1>
             ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
+              <div className="overflow-x-scroll overflow-y-hidden flex gap-x-4 flex-nowrap px-6">
                 {blogData.map((item)=>
                   <CardBlog image={item.blogimage !== null ? item.blogimage : <Skeleton.Image />} name={item.title} desc={item.content} id={item.name} />
                 )}

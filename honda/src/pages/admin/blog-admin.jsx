@@ -2,6 +2,7 @@ import { Button, Table, Image } from "antd";
 import { useFrappeGetDocList } from "frappe-react-sdk";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SidebarAdmin from "../../components/sidebar-admin";
 
 const BlogAdmin = () => {
   const { data, isLoading, error } = useFrappeGetDocList('Honda Blogs', {
@@ -55,9 +56,10 @@ const BlogAdmin = () => {
 
   return (
     <div className='py-16 px-40'>
+      {/* <SidebarAdmin /> */}
       <div className="flex justify-between mb-10">
         <div>
-          <h1 className="text-xl">Blogs</h1>
+          <h1 className="text-4xl font-bold">Blogs</h1>
         </div>
         <Link to="/blog-add">
           <Button>Add</Button>

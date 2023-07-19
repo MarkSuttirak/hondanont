@@ -59,6 +59,11 @@ $modal_text_color:#00000099;
   font-weight:700;
 }
 
+.ql-editor.read-mode a {
+  color:$primary_color;
+  text-decoration:underline
+}
+
 .font-with-inter {
   font-family:"Inter", 'Sukhumvit Set', sans-serif;
 }

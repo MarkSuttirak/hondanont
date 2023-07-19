@@ -5,6 +5,7 @@ import { useFrappeGetDoc, useFrappeUpdateDoc, useFrappeDeleteDoc, useFrappeCreat
 import { ArrowLeftOutlined } from "@ant-design/icons"
 import { useState, useRef } from "react";
 import { Editor } from '@tinymce/tinymce-react';
+import SidebarAdmin from "../../components/sidebar-admin";
 
 const BlogAdd = () => {
   const { TextArea } = Input;
@@ -76,13 +77,14 @@ const BlogAdd = () => {
   return (
     <>
       <div className='py-16 px-40'>
+        {/* <SidebarAdmin /> */}
         <Form onFinish={addPost}>
           <div className="flex justify-between">
-            <div className="flex items-center gap-x-[8px] text-lg">
+            <div className="flex items-center gap-x-[8px] text-2xl">
               <Link to="/blog-admin" className="flex">
                 <ArrowLeftOutlined />
               </Link>
-              <h1 className="text-xl">Add post</h1>
+              <h1 className="text-4xl font-bold">Add post</h1>
             </div>
             <div className="float-right">
               <Space>
