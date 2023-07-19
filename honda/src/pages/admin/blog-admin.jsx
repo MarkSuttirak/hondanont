@@ -47,9 +47,9 @@ const BlogAdmin = () => {
       key: 'category',
     },
     {
-      title: 'Created',
-      dataIndex: 'created',
-      key: 'created'
+      title: 'Modified',
+      dataIndex: 'modified',
+      key: 'modified'
     }
   ]
 

@@ -1,4 +1,4 @@
-import { Button, Form, Input, Space, Upload, notification, Typography, Spin, message } from "antd"
+import { Button, Form, Input, Space, Upload, notification, Typography, Spin, message, Modal } from "antd"
 import TextArea from "antd/es/input/TextArea";
 import { Link, useParams } from "react-router-dom"
 import { useFrappeGetDoc, useFrappeUpdateDoc, useFrappeDeleteDoc } from "frappe-react-sdk"
@@ -13,11 +13,24 @@ const BlogEdit = () => {
   const [loadings, setLoadings] = useState([]);
   const [fileList, setFileList] = useState([])
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modified, setModified] = useState(false)
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    location.href = '/blog-admin'
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const { Paragraph } = Typography;
 
   const editorRef = useRef(null);
 
   const log = () => {
+    setModified(true);
     if (editorRef.current) {
       document.getElementById("content").value = editorRef.current.getContent();
       console.log(editorRef.current.getContent());
@@ -92,6 +105,7 @@ const BlogEdit = () => {
         content: editorRef.current.getContent()
       }).then(() => {
         stopLoading(0);
+        setModified(false);
         openNotificationUpdateSuccess();
       }).catch(() => {
         stopLoading(0);
@@ -143,9 +157,11 @@ const BlogEdit = () => {
           <Form onFinish={savePost}>
             <div className="flex justify-between">
               <div className="flex items-center gap-x-[8px] text-lg">
-                <Link to="/blog-admin" className="flex">
-                  <ArrowLeftOutlined />
-                </Link>
+                {modified ? (
+                  <ArrowLeftOutlined onClick={showModal}/>
+                ) : (
+                  <ArrowLeftOutlined onClick={handleOk}/>
+                )}
                 <h1 className="text-xl">Edit post: {data.title}</h1>
               </div>
               <div className="float-right">
@@ -173,7 +189,7 @@ const BlogEdit = () => {
                     </Upload>
                   </Form.Item>
                   <Form.Item name="title">
-                    <Input type="text" placeholder="Your title" id="title" defaultValue={data.title} bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off"/>
+                    <Input type="text" placeholder="Your title" id="title" defaultValue={data.title} bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off" onKeyDown={() => setModified(true)}/>
                   </Form.Item>
                   <Form.Item name="content">
                     <Editor
@@ -201,6 +217,9 @@ const BlogEdit = () => {
               </div>
             )}
           </Form>
+          <Modal title="Your blog is not saved" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okType="default">
+            <p>Are you sure to go back to the homepage? Your modified blog will not be saved.</p>
+          </Modal>
         </div>
       )}
     </>

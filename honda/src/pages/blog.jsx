@@ -9,7 +9,7 @@ const Blog = () => {
   const { id } = useParams()
 
   const { data } = useFrappeGetDoc('Honda Blogs', id, {
-    fields: ['name', 'blogimage', 'title', 'content']
+    fields: ['name', 'blogimage', 'title', 'content', 'category']
   })
   return (
     <div>
@@ -22,7 +22,12 @@ const Blog = () => {
             <Skeleton.Image style={{width:"100vw",height:"280px",borderRadius:"0"}}/>
           )}
           <section className="p-6 brand-info">
-            <h1 className="font-bold text-xl mb-10">{data.title}</h1>
+            <div className="flex items-center justify-between mb-6">
+              <div className="block">
+                <h5 className="text-xs">{data.category}</h5>
+                <h2 className="font-bold text-xl">{data.title}</h2>
+              </div>
+            </div>
             <div dangerouslySetInnerHTML={{ __html:data.content }}/>
           </section>
         </main>
