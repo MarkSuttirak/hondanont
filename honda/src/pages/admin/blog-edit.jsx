@@ -1,4 +1,4 @@
-import { Button, Form, Input, Space, Upload, notification, Typography, Spin } from "antd"
+import { Button, Form, Input, Space, Upload, notification, Typography, Spin, message } from "antd"
 import TextArea from "antd/es/input/TextArea";
 import { Link, useParams } from "react-router-dom"
 import { useFrappeGetDoc, useFrappeUpdateDoc, useFrappeDeleteDoc } from "frappe-react-sdk"
@@ -9,7 +9,9 @@ import { Editor } from '@tinymce/tinymce-react';
 const BlogEdit = () => {
   const [api, contextHolder] = notification.useNotification();
   const [saving, setSaving] = useState(false);
+  const [imgloading, setImgloading] = useState(false);
   const [loadings, setLoadings] = useState([]);
+  const [fileList, setFileList] = useState([])
 
   const { Paragraph } = Typography;
 
@@ -86,6 +88,7 @@ const BlogEdit = () => {
     if (editorRef.current) {
       await updateDoc('Honda Blogs', id, {
         title: info.title,
+        image: info.image,
         content: editorRef.current.getContent()
       }).then(() => {
         stopLoading(0);
@@ -108,6 +111,29 @@ const BlogEdit = () => {
       openNotificationDeleteError();
     })
   }
+
+  const uploadButton = (
+    <div>
+      {imgloading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
+
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  };
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   return (
     <>
@@ -135,6 +161,17 @@ const BlogEdit = () => {
             {data && (
               <div className="block mt-10">
                 <Spin spinning={saving} tip='Saving...'>
+                  <Form.Item name="blogimage">
+                    <Upload
+                      handlePreview={handlePreview}
+                      handleChange={handleChange}
+                      listType="picture-card"
+                      maxCount={1}
+                      accept=".JPG,.JPEG,.PNG"
+                    >
+                      {uploadButton}
+                    </Upload>
+                  </Form.Item>
                   <Form.Item name="title">
                     <Input type="text" placeholder="Your title" id="title" defaultValue={data.title} bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off"/>
                   </Form.Item>

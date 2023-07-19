@@ -75,23 +75,23 @@ const BlogAdd = () => {
 
   return (
     <>
-        <div className='py-16 px-40'>
-          <Form onFinish={addPost}>
-            <div className="flex justify-between">
-              <div className="flex items-center gap-x-[8px] text-lg">
-                <Link to="/blog-admin" className="flex">
-                  <ArrowLeftOutlined />
-                </Link>
-                <h1 className="text-xl">Add post</h1>
-              </div>
-              <div className="float-right">
-                <Space>
-                  <Button htmlType="submit" onClick={() => enterLoading(0)}>Save</Button>
-                </Space>
-              </div>
+      <div className='py-16 px-40'>
+        <Form onFinish={addPost}>
+          <div className="flex justify-between">
+            <div className="flex items-center gap-x-[8px] text-lg">
+              <Link to="/blog-admin" className="flex">
+                <ArrowLeftOutlined />
+              </Link>
+              <h1 className="text-xl">Add post</h1>
             </div>
-            <div className="block mt-10">
-              <Spin spinning={saving} tip='Saving...'>
+            <div className="float-right">
+              <Space>
+                <Button htmlType="submit" onClick={() => enterLoading(0)}>Save</Button>
+              </Space>
+            </div>
+          </div>
+          <div className="block mt-10">
+            <Spin spinning={saving} tip='Saving...'>
               <Form.Item name="title">
                 <Input type="text" placeholder="Your title" bordered={false} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off"/>
               </Form.Item>
@@ -116,10 +116,10 @@ const BlogAdd = () => {
                 />
                 <TextArea style={{resize:'none',display:'none'}} id="content" placeholder="Your content..." className="p-0 text-lg" autoSize bordered={false}/>
               </Form.Item>
-              </Spin>
-            </div>
-          </Form>
-        </div>
+            </Spin>
+          </div>
+        </Form>
+      </div>
     </>
   )
 }
