@@ -12,6 +12,7 @@ import platinumCard from '../assets/images/platinum-card.png'
 import FooterMenu from '../components/footer-menu';
 import RewardSection from '../components/reward-section';
 import { Link, useNavigate } from 'react-router-dom'
+import BlogSection from '../components/blog-section';
 
 const LandingPage = () => {
   document.body.style.backgroundColor = "white";
@@ -95,6 +96,7 @@ const LandingPage = () => {
         </section>
         <section className="mt-7 py-6 pb-20" style={{backgroundColor:"#F8F8F8",borderRadius:"12px 12px 0 0"}}>
           <RewardSection />
+          <BlogSection />
         </section>
       </main>
 

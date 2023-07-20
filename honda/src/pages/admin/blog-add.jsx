@@ -77,7 +77,7 @@ const BlogAdd = () => {
   return (
     <>
       <div className='py-16 px-40'>
-        {/* <SidebarAdmin /> */}
+        <SidebarAdmin />
         <Form onFinish={addPost}>
           <div className="flex justify-between">
             <div className="flex items-center gap-x-[8px] text-2xl">

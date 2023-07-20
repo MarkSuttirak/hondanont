@@ -25,16 +25,6 @@ const RewardSection = () => {
     )
   }
 
-  const CardBlog = (props) => {
-    return (
-      <Link to={`/blog/${props.id}`} style={{height:"100%"}}>
-        <Card className="reward-cards h-full" cover={(<img src={props.image}/>)} bodyStyle={{padding:"10px 17px 18px 17px"}} key={props.name}>
-          <h2 className="font-bold text-sm pe-3">{props.name}</h2>
-          <h3 className="primary-color font-semibold mt-2 text-sm h-[40px] overflow-hidden text-ellipsis" dangerouslySetInnerHTML={{ __html:props.desc }}/>
-        </Card>
-      </Link>
-    )
-  }
   const { data: allData, isLoading, error, mutate } = useFrappeGetDocList('Item', {
     fields: ['item_code','item_name', 'item_group', 'image', 'points']
   })
@@ -49,9 +39,6 @@ const RewardSection = () => {
     filters: [['item_group','=','Cash Coupon']]
   })
 
-  const { data: blogData } = useFrappeGetDocList('Honda Blogs', {
-    fields: ['name', 'blogimage', 'title', 'content']
-  })
   return (
     <>
         {allData && (
@@ -93,21 +80,6 @@ const RewardSection = () => {
               <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
                 {cashCoupon.map((item)=>
                   <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-
-        {blogData && (
-          <div className='mt-4'>
-            <h2 className="font-bold mb-2 px-6">บทความ</h2>
-            {isLoading ? (
-              <h1>Test</h1>
-            ) : (
-              <div className="overflow-x-scroll overflow-y-hidden flex gap-x-4 flex-nowrap px-6">
-                {blogData.map((item)=>
-                  <CardBlog image={item.blogimage !== null ? item.blogimage : <Skeleton.Image />} name={item.title} desc={item.content} id={item.name} />
                 )}
               </div>
             )}

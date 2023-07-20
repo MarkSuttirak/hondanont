@@ -56,7 +56,7 @@ const BlogAdmin = () => {
 
   return (
     <div className='py-16 px-40'>
-      {/* <SidebarAdmin /> */}
+      <SidebarAdmin />
       <div className="flex justify-between mb-10">
         <div>
           <h1 className="text-4xl font-bold">Blogs</h1>
