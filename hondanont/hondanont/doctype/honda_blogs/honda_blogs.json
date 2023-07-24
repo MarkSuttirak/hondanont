@@ -29,11 +29,9 @@
    "reqd": 1
   },
   {
-   "default": "Uncategorised",
    "fieldname": "category",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "label": "Category",
-   "options": "Uncategorised",
    "reqd": 1
   },
   {
@@ -43,8 +41,13 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2023-07-18 17:54:49.723508",
+ "links": [
+  {
+   "link_doctype": "Honda Blog Category",
+   "link_fieldname": "Category"
+  }
+ ],
+ "modified": "2023-07-24 17:36:54.247512",
  "modified_by": "Administrator",
  "module": "Hondanont",
  "name": "Honda Blogs",

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Card, Button, Space, Skeleton } from "antd";
+import { Card, Button, Stack, Skeleton, HStack } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight, faGift } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faChevronRight, faGift } from "@fortawesome/free-solid-svg-icons";
 import { useFrappeGetDocList, useFrappeGetDoc } from 'frappe-react-sdk'
 import HondaNon from '../assets/images/honda-non.png'
 import classicCard from '../assets/images/classic-card.png'
@@ -54,7 +53,7 @@ const LandingPage = () => {
         </div>
 
         <section className="px-6 member-card">
-          <Card style={{backgroundImage:`url(${classic ? classicCard : silver ? silverCard : gold ? goldCard : platinumCard})`}}>
+          <Card style={{backgroundImage:`url(${classic ? classicCard : silver ? silverCard : gold ? goldCard : platinumCard})`,backgroundSize:"cover",height:"216px",padding:"120px 20px 20px"}} variant="unstyled">
             <div className='columns-1 flex items-end'>
               <div className="inline-block w-1/2">
                 <h1 className="text-white text-3xl font-with-inter font-medium">Classic</h1>
@@ -72,11 +71,14 @@ const LandingPage = () => {
                     border: 'none',
                     fontSize: '14px',
                     color: '#F0592A',
+                    padding: '8px 15px',
                   }}>
-                    <Space>
-                      <FontAwesomeIcon icon={faGift} />
-                      <span>รางวัลของฉัน</span>
-                    </Space>
+                    <Stack style={{display:"inline-flex",alignItems:"center"}}>
+                      <HStack>
+                        <FontAwesomeIcon icon={faGift} />
+                        <span>รางวัลของฉัน</span>
+                      </HStack>
+                    </Stack>
                   </Button>
                 </Link>
               </div>
@@ -85,11 +87,13 @@ const LandingPage = () => {
 
           <div style={{paddingTop:"18px"}}>
             <Link to="/point-collection">
-              <Button className="w-full text-left point-collect-btn">
-                <Space className="flex justify-between font-medium">
-                  วิธีการเก็บคะแนน
-                  <FontAwesomeIcon icon={faChevronRight}/>
-                </Space>
+              <Button className="w-full text-left point-collect-btn" style={{height:"inherit"}}>
+                <Stack className="font-medium text-white w-full justify-between text-sm">
+                  <HStack className='flex' style={{justifyContent:"space-between",width:"100%"}}>
+                    <span>วิธีการเก็บคะแนน</span>
+                    <FontAwesomeIcon icon={faChevronRight}/>
+                  </HStack>
+                </Stack>
               </Button>
             </Link>
           </div>

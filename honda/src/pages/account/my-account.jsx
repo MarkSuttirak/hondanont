@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from "react";
-import { Avatar, Button, Space, Modal, Skeleton } from "antd";
+import { Avatar, Button, Stack, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, SkeletonCircle, SkeletonText, HStack, useDisclosure } from '@chakra-ui/react';
 import { faChevronLeft, faChevronRight, faGift, faUserPen, faShield, faLock, faBook, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import avatarTest from '../../assets/images/cooler-bag.png'
 import { faUser, faCreditCard } from "@fortawesome/free-regular-svg-icons";
 import FooterMenu from "../../components/footer-menu";
 import HeaderMobile from "../../components/header";
@@ -11,20 +10,7 @@ import { useFrappeGetDoc } from "frappe-react-sdk";
 
 const MyAccount = () => {
   document.body.style.backgroundColor = "white";
-  const [logoutModal, setLogoutModal] = useState(false);
-
-  const openModal = () => {
-    setLogoutModal(true);
-  }
-
-  const closeModal = () => {
-    setLogoutModal(false)
-  }
-
-  const okModal = () => {
-    window.location.href = '/login'
-    setLogoutModal(false)
-  }
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { data: user, isLoading } = useFrappeGetDoc('Customer', 'Bonnie Yang', {
     fields: ['customer_name', 'image']
@@ -37,11 +23,13 @@ const MyAccount = () => {
   const CardAccount = (props) => {
     return (
       <Link to={props.link}>
-        <Button className="bg-white flex items-center w-full justify-between mb-4 black" style={{height:"inherit",padding:"15px 20px",border:"none",boxShadow:"none",borderRadius:"8px"}}>
-          <Space>
-            <FontAwesomeIcon icon={props.icon} style={{minWidth:"24px"}}/>
-            <span className="font-medium">{props.text}</span>
-          </Space>
+        <Button bgColor="white" className="flex items-center w-full mb-4 black" style={{height:"inherit",padding:"15px 20px",border:"none",boxShadow:"none",borderRadius:"8px",justifyContent:"space-between"}}>
+          <Stack>
+            <HStack>
+              <FontAwesomeIcon icon={props.icon} style={{minWidth:"24px"}}/>
+              <span className="font-medium text-sm">{props.text}</span>
+            </HStack>
+          </Stack>
           <FontAwesomeIcon icon={faChevronRight} className="float-right"/>
         </Button>
       </Link>
@@ -67,11 +55,11 @@ const MyAccount = () => {
             />
             )}</>
             ) : (
-              <Skeleton.Avatar active size={114}/>
+              <SkeletonCircle active size={114}/>
             )}
           </div>
           <div className="block ml-32">
-            {!isLoading ? (<h1 className="font-with-inter text-color text-xl font-medium">{user && user.customer_name}</h1>) : (<Skeleton.Input active style={{maxWidth:"60px",minWidth:"0",marginBottom:"4px"}}/>)}
+            {!isLoading ? (<h1 className="font-with-inter text-color text-xl font-medium">{user && user.customer_name}</h1>) : (<SkeletonText active style={{maxWidth:"60px",minWidth:"0",marginBottom:"4px"}}/>)}
             <p className="primary-color">Classic Member</p>
 
             <div className="columns-2 mt-4">
@@ -99,22 +87,44 @@ const MyAccount = () => {
           <CardAccount link="/member-condition" text="เงื่อนไขระดับของสมาชิก" icon={faCreditCard}/>
 
           <h2 className="font-bold mt-6 mb-2">บัญชี</h2>
-          <Button onClick={openModal} className="bg-white flex items-center w-full justify-between mb-4" style={{height:"inherit",padding:"15px 20px",border:"none",boxShadow:"none",borderRadius:"8px",color:"black"}}>
-            <Space>
-              <FontAwesomeIcon icon={faArrowRightFromBracket} style={{minWidth:"24px"}}/>
-              <span className="font-medium">ออกจากระบบ</span>
-            </Space>
+          <Button onClick={onOpen} bgColor="white" className="flex items-center w-full mb-4" style={{height:"inherit",padding:"15px 20px",border:"none",boxShadow:"none",borderRadius:"8px",color:"black",justifyContent:"space-between"}}>
+            <Stack>
+              <HStack>
+                <FontAwesomeIcon icon={faArrowRightFromBracket} style={{minWidth:"24px"}}/>
+                <span className="font-medium text-sm">ออกจากระบบ</span>
+              </HStack>
+            </Stack>
             <FontAwesomeIcon icon={faChevronRight} className="float-right"/>
           </Button>
         </section>
       </main>
 
-      <Modal className="popup-modal text-center test-modal" open={logoutModal} onOk={okModal} onCancel={closeModal} closable={false} cancelText="ยกเลิก" okText="ออกจากระบบ">
+      {/* <Modal className="popup-modal text-center test-modal" open={logoutModal} onOk={okModal} onCancel={closeModal} closable={false} cancelText="ยกเลิก" okText="ออกจากระบบ">
         <h2 className="primary-color mb-2">
           <FontAwesomeIcon icon={faArrowRightFromBracket} style={{fontSize:"54px"}}/><br/>
           <span className="text-lg font-bold mt-5 inline-block">คุณต้องการออกจากระบบหรือไม่</span>
         </h2>
         <p>การใช้งานของคุณจะสิ้นสุดลง และคุณจะต้องเข้าสู่ระบบอีกครั้ง เพื่อเปิดการใช้งาน</p>
+      </Modal> */}
+
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent w="80%" style={{borderRadius:"10px",textAlign:"center"}}>
+          <ModalHeader p="26px 26px 8px" style={{color:"#F0592A",fontSize:"18px",fontWeight:"bold"}}>
+            <FontAwesomeIcon icon={faArrowRightFromBracket} style={{fontSize:"54px",marginBottom:"28px"}}/><br/>
+            คุณต้องการออกจากระบบหรือไม่
+          </ModalHeader>
+          <ModalBody p="0 26px 26px" style={{fontSize:"14px"}}>
+            การใช้งานของคุณจะสิ้นสุดลง และคุณจะต้องเข้าสู่ระบบอีกครั้ง เพื่อเปิดการใช้งาน
+          </ModalBody>
+
+          <ModalFooter p={0}>
+            <Button h="50px" colorScheme="black" onClick={onClose} style={{borderRadius:"0 0 0 10px",width:"50%",color:"black",backgroundColor:"#0000000A",fontSize:"14px"}}>
+              ยกเลิก
+            </Button>
+            <Button h="50px" variant='ghost' bg="linear-gradient(133.91deg,#f16a28 1.84%,#f9a30f)" style={{borderRadius:"0 0 10px 0",width:"50%",color:"white",fontSize:"14px"}} onClick={() => location.href = "/login"}>ออกจากระบบ</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
 
       <FooterMenu activeMenu={4}/>

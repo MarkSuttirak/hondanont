@@ -19,13 +19,8 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [
-  {
-   "link_doctype": "Honda Blogs",
-   "link_fieldname": "Category"
-  }
- ],
- "modified": "2023-07-18 17:49:58.894971",
+ "links": [],
+ "modified": "2023-07-24 17:09:48.503703",
  "modified_by": "Administrator",
  "module": "Hondanont",
  "name": "Honda Blog Category",

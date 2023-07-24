@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Space, Skeleton } from "antd";
+import { Card, Image, Skeleton } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft, faChevronRight, faGift } from "@fortawesome/free-solid-svg-icons";
@@ -14,9 +14,12 @@ const BlogSection = () => {
   const CardBlog = (props) => {
     return (
       <Link to={`/blog/${props.id}`} style={{height:"100%"}}>
-        <Card className="reward-cards h-full" cover={(<img src={props.image}/>)} bodyStyle={{padding:"10px 17px 18px 17px"}} key={props.name}>
-          <h2 className="font-bold text-sm pe-3">{props.name}</h2>
-          <h3 className="primary-color font-semibold mt-2 text-sm h-[40px] overflow-hidden text-ellipsis" dangerouslySetInnerHTML={{ __html:props.desc }}/>
+        <Card className="reward-cards h-full" key={props.name} variant="unstyled">
+          <Image src={props.image} alt={props.name}/>
+          <div className='p-4'>
+            <h2 className="font-bold text-sm pe-3">{props.name}</h2>
+            <h3 className="primary-color font-semibold mt-2 text-sm h-[40px] overflow-hidden text-ellipsis" dangerouslySetInnerHTML={{ __html:props.desc }}/>
+          </div>
         </Card>
       </Link>
     )

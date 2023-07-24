@@ -2,7 +2,7 @@ import { useFrappeGetDoc } from "frappe-react-sdk"
 import { useParams } from "react-router-dom"
 import HeaderMobile from "../components/header"
 import React, { useState,useEffect } from "react";
-import { Card, Button, Space, Skeleton } from "antd";
+import { Skeleton } from "@chakra-ui/react";
 import { faChevronLeft, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Blog = () => {
@@ -20,7 +20,7 @@ const Blog = () => {
           {data.blogimage != null ? (
             <img src={data.blogimage} width="100%" style={{height:"280px"}}/>
           ) : (
-            <Skeleton.Image style={{width:"100vw",height:"280px",borderRadius:"0"}}/>
+            <Skeleton style={{width:"100vw",height:"280px",borderRadius:"0"}} speed={0} startColor="#E0E0E0"/>
           )}
           <section className="p-6 brand-info">
             <div className="flex items-center justify-between mb-6">

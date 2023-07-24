@@ -2,7 +2,6 @@ import HeaderMobile from "../../components/header"
 import RewardSection from "../../components/reward-section"
 import FooterMenu from "../../components/footer-menu"
 import React, { useState,useEffect } from "react";
-import { Card, Button, Space, Skeleton } from "antd";
 import { faChevronLeft, faClockRotateLeft, faGift } from "@fortawesome/free-solid-svg-icons";
 
 const RewardsPage = () => {

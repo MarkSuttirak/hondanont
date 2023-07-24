@@ -1,14 +1,13 @@
 *{font-family:'Sukhumvit Set', sans-serif}
 ::-webkit-scrollbar{display:none}
 
-input{color:black}
-
-.tox-notifications-container {
-  display:none !important;
+[data-theme=light] {
+  background:inherit !important;
 }
 
-#preview {
-  margin-top:40px;
+input{color:black}
+
+.codex-editor {
   h1,h2,h3,h4,h5,h6 {
     font-weight:revert;
     font-size:revert;
@@ -158,17 +157,15 @@ input{
 }
 
 .reward-cards {
-  min-width:calc(40vw + 6px);
-  width:calc(40vw + 6px);
+  min-width:calc(40vw + 6px) !important;
+  width:calc(40vw + 6px) !important;
   border-radius:10px;
   border:none;
-  .ant-card-cover{
-    margin-top:0;
-    img{
-      border-radius:10px 10px 0 0;
-      aspect-ratio:4/3;
-      object-fit:cover;
-    }
+  background-color:white;
+  img{
+    border-radius:10px 10px 0 0;
+    aspect-ratio:4/3;
+    object-fit:cover;
   }
 }
 
@@ -203,15 +200,6 @@ input{
     &:last-child{
       padding-bottom:0;
     }
-  }
-}
-
-.card-history{
-  .ant-card{
-    box-shadow:none;
-  }
-  .ant-card-body{
-    padding:20px;
   }
 }
 
@@ -324,7 +312,6 @@ main{
 }
 
 .point-collect-btn{
-  height:inherit;
   padding:17px 20px;
   border:none;
   border-radius:8px;
@@ -571,4 +558,34 @@ main{
 
 .bwf-hover-suheader-menu {
   display:block !important
+}
+
+.sidebar-admin {
+  animation: sidebarAnim 400ms;
+}
+
+.container-admin {
+  margin-left:280px;
+}
+
+.btn-active {
+  background-color:#0000000f !important;
+}
+
+@keyframes containerAnim {
+  from {
+    margin-left:280px
+  }
+  to {
+    margin-left:0;
+  }
+}
+
+@keyframes sidebarAnim {
+  from {
+    transform:translateX(-280px);
+  }
+  to {
+    transform:translateX(0)
+  }
 }

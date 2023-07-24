@@ -27,7 +27,9 @@ import BlogAdmin from './pages/admin/blog-admin';
 import BlogEdit from './pages/admin/blog-edit';
 import BlogAdd from './pages/admin/blog-add';
 import BlogView from './pages/admin/blog-view';
+import BlogCate from './pages/admin/blog-cate/blog-categories';
 import Blog from './pages/blog';
+import TestEditor from './pages/admin/test-editor';
 
 function App() {
   return (
@@ -58,8 +60,11 @@ function App() {
           <Route path="/blog-edit/:id" element={<BlogEdit />}/>
           <Route path="/blog-view/:id" element={<BlogView />}/>
           <Route path="/blog-add" element={<BlogAdd />}/>
+          <Route path="/blog-categories" element={<BlogCate />}/>
 
           <Route path="/blog/:id" element={<Blog />}/>
+
+          <Route path="/test-editor" element={<TestEditor />}/>
         </Routes>
       </BrowserRouter>
     </FrappeProvider>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Space, Skeleton } from "antd";
+import { Card, Image } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft, faChevronRight, faGift } from "@fortawesome/free-solid-svg-icons";
@@ -15,12 +15,15 @@ const RewardSection = () => {
 
   const CardReward = (props) => {
     return (
-      <Card onClick={() => showConfirm(props)} className="reward-cards" cover={(<img src={props.image}/>)} bodyStyle={{padding:"10px 17px 18px 17px"}} key={props.name}>
-        <h2 className="font-bold text-sm pe-3">{props.name}</h2>
-        <h3 className="primary-color font-semibold mt-2 text-sm">
-          <FontAwesomeIcon icon={faStar} className="mr-1"/>
-          {props.point} คะแนน
-        </h3>
+      <Card onClick={() => showConfirm(props)} className="reward-cards" key={props.name} variant="unstyled">
+        <Image src={props.image} alt={props.name}/>
+        <div className='p-4'>
+          <h2 className="font-bold text-sm pe-3">{props.name}</h2>
+          <h3 className="primary-color font-semibold mt-2 text-sm">
+            <FontAwesomeIcon icon={faStar} className="mr-1"/>
+            {props.point} คะแนน
+          </h3>
+        </div>
       </Card>
     )
   }
@@ -47,7 +50,7 @@ const RewardSection = () => {
             {isLoading ? (
               <h1>Test</h1>
             ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
+              <div className="overflow-x-scroll overflow-y-hidden flex gap-x-4 flex-nowrap px-6">
                 {allData.map((item)=>
                   <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
                 )}
@@ -62,7 +65,7 @@ const RewardSection = () => {
             {isLoading ? (
               <h1>Test</h1>
             ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
+              <div className="overflow-x-scroll overflow-y-hidden flex gap-x-4 flex-nowrap px-6">
                 {freeProduct.map((item)=>
                   <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
                 )}
@@ -77,7 +80,7 @@ const RewardSection = () => {
             {isLoading ? (
               <h1>Test</h1>
             ) : (
-              <div className="overflow-scroll flex gap-x-4 flex-nowrap px-6">
+              <div className="overflow-x-scroll overflow-y-hidden flex gap-x-4 flex-nowrap px-6">
                 {cashCoupon.map((item)=>
                   <CardReward image={item.image} name={item.item_name} point={item.points} id={item.item_name} rewardid={item.item_code}/>
                 )}

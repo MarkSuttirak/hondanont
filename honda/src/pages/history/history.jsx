@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Tabs, Card, Skeleton } from "antd";
+import { Card, Skeleton } from '@chakra-ui/react';
 import FooterMenu from "../../components/footer-menu";
 import HeaderMobile from "../../components/header";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +11,8 @@ const History = () => {
     <div>
       <HeaderMobile firstIcon={faChevronLeft} title="ประวัติ" secondBtn={false}/>
       <main className="p-6 tabs-menu bg-[#F8F8F8] h-full">
-        <div className="mb-4 card-history">
-          <Card bordered={false}>
+        <div className="mb-4">
+          <Card variant="unstyled" p="20px">
             <div className="columns-2 flex items-center justify-between">
               <div className="block history-title">
                 <h2 className="text-color font-bold text-base" style={{overflow:"hidden",textOverflow:"ellipsis"}}>Test</h2>
@@ -26,8 +26,8 @@ const History = () => {
             </div>
           </Card>
         </div>
-        <div className="mb-4 card-history">
-          <Card bordered={false}>
+        <div className="mb-4">
+          <Card variant="unstyled" p="20px">
             <div className="columns-2 flex items-center justify-between">
               <div className="block history-title">
                 <h2 className="text-color font-bold text-base" style={{overflow:"hidden",textOverflow:"ellipsis"}}>Test</h2>

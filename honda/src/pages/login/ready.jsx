@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderMobile from "../../components/header";
 import HondaNon from "../../assets/images/honda-non.png";
 import { faChevronLeft, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Input, Button, Modal, DatePicker } from "antd";
+import { Button } from '@chakra-ui/react'
 import CartoonBig from "../../assets/images/cartoon-big.png";
 import { useSearchParams } from "react-router-dom";
 
@@ -35,7 +33,7 @@ const Ready = () => {
     ร่วมสนุกเก็บสะสมคะแนน แลกของรางวัลต่างๆ
     จาก Honda Nonthaburi ที่ตั้งใจมอบให้กับลูกค้า
     คนพิเศษ ผ่านเว็บได้ตลอดเวลา</p>
-            <Button className="save-btn active mt-16" onClick={clickToStart}>เริ่มต้นใช้งาน</Button>
+            <Button className="save-btn active mt-16" fontWeight="bold" onClick={clickToStart}>เริ่มต้นใช้งาน</Button>
           </div>
         </div>
       </main>

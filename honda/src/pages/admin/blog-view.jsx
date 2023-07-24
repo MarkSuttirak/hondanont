@@ -1,7 +1,7 @@
 import { useFrappeGetDoc } from 'frappe-react-sdk';
 import React, { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeftOutlined } from "@ant-design/icons"
+import { ArrowBackIcon } from "@chakra-ui/icons"
 
 export default function BlogView() {
   const { id } = useParams();
@@ -12,10 +12,10 @@ export default function BlogView() {
   return (
     <>
       {data && (
-        <div className='py-16 px-40'>
+        <div className='py-16 px-40 container-admin'>
           <div className="flex items-center gap-x-[8px] text-2xl">
             <Link to={`/blog-edit/${id}`} className="flex">
-              <ArrowLeftOutlined />
+              <ArrowBackIcon />
             </Link>
             <h1 className='text-4xl font-bold'>You are viewing: {data.title}</h1>
           </div>

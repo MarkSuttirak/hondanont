@@ -2,12 +2,12 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState,useEffect } from "react";
 import HeaderMobile from "../../components/header";
-import { Input, DatePicker, Button,Form,notification, Skeleton } from "antd";
+import { Input, Button, Skeleton, FormControl, FormLabel } from "@chakra-ui/react";
 import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 const EditAccount = () => {
   document.body.style.backgroundColor = "#F8F8F8";
-  const [form] = Form.useForm();
+
   const [edited, isEdited] = useState(false);
 
   const { data: user, isLoading } = useFrappeGetDoc('Contact', 'Bonnie Yang', {
@@ -56,35 +56,33 @@ const EditAccount = () => {
       <HeaderMobile firstIcon={faChevronLeft} title="ข้อมูลของฉัน" secondBtn={false}/>
       <main className="p-6 mb-0">
         <h2 className="font-bold">ข้อมูลส่วนตัว</h2>
-        <Form form={form}>
-          <label className="inline-block mt-4 text-sm">ชื่อ-นามสกุล</label>
-          {!isLoading ? (
-            <Form.Item name = "name" className="mb-0"> 
-              <Input className="w-full mt-2 input-account" defaultValue={user && user.customer_name} id="name" placeholder="ชื่อ-นามสกุล" onInput={typeInfo}/>
-            </Form.Item>
-          ) : (
-            <Skeleton.Input size="large" active block className="mt-1"/>
-          )}
+          <FormControl name="name">
+            <FormLabel className="inline-block mt-4" fontSize="14px" mb={0}>ชื่อ-นามสกุล</FormLabel>
+            {!isLoading ? (
+              <Input variant="unstyled" bgColor="white" className="w-full mt-1 input-account" p="10px" fontSize="14px" defaultValue={user && user.customer_name} id="name" placeholder="ชื่อ-นามสกุล" onInput={typeInfo}/>
+            ) : (
+              <Skeleton height='40px' className="mt-1"/>
+            )}
+          </FormControl>
 
-          <label className="inline-block mt-4 text-sm">เลขบัตรประจำตัวบัตรประชาชน</label>
-          <Form.Item name = "id_number" type="tel" className="mb-0"> 
-            <Input className="w-full mt-2 input-account" placeholder="0-0000-00000-00-0" maxLength={16} onKeyUp={handleIDcard} onInput={typeInfo}/>
-          </Form.Item>
+          <FormControl name="id_number">
+            <FormLabel className="inline-block mt-4" fontSize="14px" mb={0}>เลขบัตรประจำตัวบัตรประชาชน</FormLabel>
+            <Input variant="unstyled" bgColor="white" className="w-full mt-1 input-account" p="10px" fontSize="14px" placeholder="0-0000-00000-00-0" maxLength={16} onKeyUp={handleIDcard} onInput={typeInfo}/>
+          </FormControl>
 
-          <label className="inline-block mt-4 text-sm">วันเกิด</label>
-          <Form.Item name = "birth_date"> 
-            <Input type="text" className="w-full mt-2 input-account"  onInput={typeInfo} disabled/>
-          </Form.Item>
+          <FormControl name="birth_date">
+            <FormLabel className="inline-block mt-4" fontSize="14px" mb={0}>วันเกิด</FormLabel>
+            <Input variant="unstyled" bgColor="white" type="text" className="w-full mt-1 input-account" p="10px" fontSize="14px" onInput={typeInfo} disabled/>
+          </FormControl>
 
-          <label className="inline-block mt-4 text-sm">อีเมล</label>
-          {!isLoading ? (
-            <Form.Item name = "emailvalues"> 
-              <Input type="email" className="w-full mt-2 input-account" defaultValue={user && user.email} id="emailvalues"  placeholder="example@mail.com" onInput={typeInfo}/>
-            </Form.Item>
-          ) : (
-            <Skeleton.Input size="large" active block className="mt-1"/>
-          )}
-        </Form>
+          <FormControl name='email'>
+            <FormLabel className="inline-block mt-4" fontSize="14px" mb={0}>อีเมล</FormLabel>
+            {!isLoading ? (
+              <Input variant="unstyled" bgColor="white" type="email" className="w-full mt-1 input-account" p="10px" fontSize="14px" defaultValue={user && user.email} id="emailvalues"  placeholder="example@mail.com" onInput={typeInfo}/>
+            ) : (
+              <Skeleton height='40px' className="mt-1"/>
+            )}
+          </FormControl>
       </main>
       <footer className="p-6 relative bottom-0">
         <Button onClick={onUpdate} type='submit' className={`save-btn ${edited ? "active" : "inactive"}`} disabled={edited ? false : true}>บันทึก</Button>
