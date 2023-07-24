@@ -69,7 +69,6 @@ const BlogEdit = () => {
   const toast = useToast()
 
   const savePost = async (info) => {
-    info.category = "";
     await updateDoc('Honda Blogs', id, info)
     .then(() => {
       toast({
@@ -82,7 +81,7 @@ const BlogEdit = () => {
     }).catch(() => {
       toast({
         title: 'There is an error',
-        description: "Sorry, it seems that there is an error while updaating the blog.",
+        description: "Sorry, it seems that there is an error while updating the blog.",
         status: 'error',
         duration: 9000,
         isClosable: true,
@@ -132,6 +131,17 @@ const BlogEdit = () => {
     }
   }, [])
 
+  const save = () => {
+    editor
+      .save()
+      .then(outputData => {
+        console.log('Article data: ', outputData);
+      })
+      .catch(error => {
+        console.log('Saving failed: ', error);
+      });
+  };
+
   return (
     <>
       <SidebarAdmin />
@@ -154,6 +164,7 @@ const BlogEdit = () => {
                   </Link>
                   <Button type="submit">Save</Button>
                   <Button onClick={deletePost}>Delete</Button>
+                  <Button onClick={save}>Test Save</Button>
                 </HStack>
               </Stack>
             </div>
@@ -163,8 +174,8 @@ const BlogEdit = () => {
               <Input type="text" placeholder="Your title" id="title" fontSize="40px" fontWeight="bold" defaultValue={data && data.title} variant="unstyled" htmlSize={4} autoComplete="off" {...register('title')}/>
             </FormControl>
             <FormControl name="content">
-              {/* <div id="editorjs"></div> */}
-              <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" defaultValue={data && data.content} className="p-0 text-lg" {...register('content')}/>
+              <div id="editorjs"></div>
+              {/* <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" defaultValue={data && data.content} className="p-0 text-lg" {...register('content')}/> */}
             </FormControl>
             {dataCates && (
               <FormControl name="category">
