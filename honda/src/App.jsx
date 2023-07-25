@@ -30,6 +30,7 @@ import BlogView from './pages/admin/blog-view';
 import BlogCate from './pages/admin/blog-cate/blog-categories';
 import Blog from './pages/blog';
 import TestEditor from './pages/admin/test-editor';
+import BlogsFilteredByCate from './pages/admin/blog-cate/blog-cate';
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
           <Route path="/blog-view/:id" element={<BlogView />}/>
           <Route path="/blog-add" element={<BlogAdd />}/>
           <Route path="/blog-categories" element={<BlogCate />}/>
+          <Route path="/blog-category/:id" element={<BlogsFilteredByCate />}/>
 
           <Route path="/blog/:id" element={<Blog />}/>
 

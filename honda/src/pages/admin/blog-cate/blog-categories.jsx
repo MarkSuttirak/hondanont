@@ -114,8 +114,8 @@ const BlogAdmin = () => {
       })
     }).catch(() => {
         toast({
-          title: 'There is an error',
-          description: "Sorry, it seems that there is an error while updating the blog category.",
+          title: 'Unable to update',
+          description: "Sorry, you cannot update the blog category while there are posts that relate to this blog category.",
           status: 'error',
           duration: 9000,
           isClosable: true,
@@ -137,8 +137,8 @@ const BlogAdmin = () => {
       })
     }).catch(() => {
         toast({
-          title: 'There is an error',
-          description: "Sorry, it seems that there is an error while deleting the blog category.",
+          title: 'Unable to delete',
+          description: "Sorry, you cannot delete the blog category while there are posts that relate to this blog category.",
           status: 'error',
           duration: 9000,
           isClosable: true,
@@ -174,7 +174,7 @@ const BlogAdmin = () => {
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                      <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 w-[100px]">
                         ID
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -244,7 +244,7 @@ const BlogAdmin = () => {
             <ModalBody>
               <FormControl name="category">
                 <FormLabel>Category Name:</FormLabel>
-                <Input type="text" defaultValue={data && rowNum && data[rowNum].category} {...register('category')}/>
+                <Input type="text" defaultValue={data && rowNum !== null && data[rowNum].category} {...register('category')}/>
               </FormControl>
             </ModalBody>
 

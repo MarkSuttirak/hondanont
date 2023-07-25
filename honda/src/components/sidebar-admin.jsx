@@ -1,5 +1,5 @@
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
-import { useFrappeGetDocList } from 'frappe-react-sdk'
+import { useFrappeGetDoc, useFrappeGetDocList } from 'frappe-react-sdk'
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -11,9 +11,21 @@ export default function SidebarAdmin() {
     setActive(menu);
   }
 
+  const { data: blogs } = useFrappeGetDocList('Honda Blogs', {
+    filter: ['name']
+  })
+
+  const { data: blogCate } = useFrappeGetDocList('Honda Blog Category', {
+    filter: ['name']
+  })
+
+  const { data: userData } = useFrappeGetDoc('User', 'Administrator', {
+    filter: ['name', 'full_name', 'user_image']
+  })
+
   const navigation = [
-    { name: 'Blog', icon: FolderIcon, href: '/blog-admin', count: 5, current: active === '/blog-admin' ? true : false },
-    { name: 'Blog categories', icon: InboxIcon, href: '/blog-categories', count: 3, current: active === '/blog-categories' ? true : false  },
+    { name: 'Blog', icon: FolderIcon, href: '/blog-admin', count: (blogs && blogs.length), current: active === '/blog-admin' ? true : false },
+    { name: 'Blog categories', icon: InboxIcon, href: '/blog-categories', count: (blogCate && blogCate.length), current: active === '/blog-categories' ? true : false  },
   ]
 
   function classNames(...classes) {
@@ -70,21 +82,23 @@ export default function SidebarAdmin() {
         </nav>
       </div>
       <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-        <a href="#" className="group block w-full flex-shrink-0">
-          <div className="flex items-center">
-            <div>
-              <img
-                className="inline-block h-9 w-9 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-              />
+        {userData && (
+          <a href="/app" className="group block w-full flex-shrink-0">
+            <div className="flex items-center">
+              <div>
+                <img
+                  className="inline-block h-9 w-9 rounded-full"
+                  src={userData.user_image}
+                  alt={userData.user_image}
+                />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{userData.full_name}</p>
+                <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+              </div>
             </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-              <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-            </div>
-          </div>
-        </a>
+          </a>
+        )}
       </div>
     </div>
   )

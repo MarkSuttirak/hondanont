@@ -2,6 +2,7 @@ import { useFrappeGetDoc } from 'frappe-react-sdk';
 import React, { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowBackIcon } from "@chakra-ui/icons"
+import SidebarAdmin from '../../components/sidebar-admin';
 
 export default function BlogView() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ export default function BlogView() {
 
   return (
     <>
+      <SidebarAdmin />
       {data && (
         <div className='py-16 px-40 container-admin'>
           <div className="flex items-center gap-x-[8px] text-2xl">

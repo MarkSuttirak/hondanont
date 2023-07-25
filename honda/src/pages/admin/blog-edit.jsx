@@ -174,16 +174,15 @@ const BlogEdit = () => {
               <Input type="text" placeholder="Your title" id="title" fontSize="40px" fontWeight="bold" defaultValue={data && data.title} variant="unstyled" htmlSize={4} autoComplete="off" {...register('title')}/>
             </FormControl>
             <FormControl name="content">
-              <div id="editorjs"></div>
-              {/* <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" defaultValue={data && data.content} className="p-0 text-lg" {...register('content')}/> */}
+              {/* <div id="editorjs"></div> */}
+              <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" defaultValue={data && data.content} className="p-0 text-lg" {...register('content')}/>
             </FormControl>
             {dataCates && (
               <FormControl name="category">
                 <FormLabel>Blog category:</FormLabel>
                 <Select {...register('category')}>
-                  <option value="Uncategorised">Uncategorised</option>
                 {dataCates.map((d) => 
-                  <option value={d.category}>{d.category}</option>
+                  <option value={d.name}>{d.category}</option>
                 )}
                 </Select>
               </FormControl>

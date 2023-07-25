@@ -1,12 +1,15 @@
 import { useFrappeGetDocList } from "frappe-react-sdk";
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import SidebarAdmin from "../../components/sidebar-admin";
+import SidebarAdmin from "../../../components/sidebar-admin";
 import { Button } from '@chakra-ui/react'
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
-const BlogAdmin = () => {
+const BlogsFilteredByCate = () => {
+  const { id } = useParams();
   const { data, isLoading, error } = useFrappeGetDocList('Honda Blogs', {
-    fields: ['name', 'blogimage', 'title', 'content', 'category']
+    fields: ['name', 'blogimage', 'title', 'content', 'category'],
+    filters: [['category', '=', id]]
   })
 
   return (
@@ -15,7 +18,10 @@ const BlogAdmin = () => {
       <div className="sm:py-16 sm:px-40 p-4 container-admin">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-gray-900">Blogs</h1>
+            <Link to="/blog-admin">
+              <ArrowBackIcon />
+            </Link>
+            <h1 className="text-xl font-semibold text-gray-900">{id}'s Blogs</h1>
             <p className="mt-2 text-sm text-gray-700">
               A list of all the users in your account including their name, title, email and role.
             </p>
@@ -66,9 +72,7 @@ const BlogAdmin = () => {
                             <img src={d.blogimage} width="60" />
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{d.title}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {d.category}
-                          </td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{d.category}</td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex gap-x-2 justify-end">
                             <Link to={`/blog-view/${d.name}`}>
                               <Button variant="ghost" className="text-indigo-600 hover:text-indigo-900">
@@ -92,30 +96,7 @@ const BlogAdmin = () => {
         </div>
       </div>
     </>
-    // <div className='py-16 px-40 container-admin'>
-    //   <SidebarAdmin active={0}/>
-    //   <div className="flex justify-between mb-10">
-    //     <div>
-    //       <h1 className="text-4xl font-bold">Blogs</h1>
-    //     </div>
-    //     <Link to="/blog-add">
-    //       <Button>Add</Button>
-    //     </Link>
-    //   </div>
-    //   {data && (
-    //     <Table 
-    //       dataSource={dataSource} columns={columns}
-    //       onRow={(record, rowIndex) => {
-    //         return {
-    //           onClick: (event) => {
-    //             (window.location.href = `/blog-edit/${record.id}`)
-    //           },
-    //         }
-    //       }}
-    //     />
-    //   )}
-    // </div>
   )
 }
 
-export default BlogAdmin;
+export default BlogsFilteredByCate;

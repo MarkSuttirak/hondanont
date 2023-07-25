@@ -1,8 +1,6 @@
-import { Form } from "antd";
-import { Input, Button, Stack, HStack, Select, useToast, chakra, FormControl, FormLabel, Textarea } from '@chakra-ui/react'
+import { Input, Button, Stack, HStack, Select, useToast, chakra, FormControl, FormLabel, Textarea, SelectField } from '@chakra-ui/react'
 import { Link, useParams } from "react-router-dom"
-import { useFrappeGetDocList, useFrappeUpdateDoc, useFrappeDeleteDoc, useFrappeCreateDoc } from "frappe-react-sdk"
-import { ArrowLeftOutlined } from "@ant-design/icons"
+import { useFrappeGetDocList, useFrappeUpdateDoc, useFrappeDeleteDoc, useFrappeCreateDoc, useFrappeFileUpload } from "frappe-react-sdk"
 import { useState, useRef, useEffect } from "react";
 import SidebarAdmin from "../../components/sidebar-admin";
 import EditorJS from '@editorjs/editorjs'
@@ -10,16 +8,21 @@ import Header from '@editorjs/header'
 import List from '@editorjs/list'
 import InlineCode from '@editorjs/inline-code'
 import { useForm } from "react-hook-form";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 const BlogAdd = () => {
   const [saving, setSaving] = useState(false);
   const [loadings, setLoadings] = useState([]);
+
+  const [file, setFile] = useState(null);
 
   const { handleSubmit, register, formState: { errors, isSubmitting } } = useForm()
 
   const { data: dataCates, isValidating } = useFrappeGetDocList('Honda Blog Category', {
     fields: ['name', 'category']
   })
+
+  const { upload, progress, loading: uploading } = useFrappeFileUpload()
 
   const enterLoading = (index) => {
     setSaving(true);
@@ -98,7 +101,7 @@ const BlogAdd = () => {
           <div className="flex justify-between">
             <div className="flex items-center gap-x-[8px] text-2xl">
               <Link to="/blog-admin" className="flex">
-                <ArrowLeftOutlined />
+                <ArrowBackIcon />
               </Link>
               <h1 className="text-4xl font-bold">Add post</h1>
             </div>
@@ -115,16 +118,15 @@ const BlogAdd = () => {
               <Input type="text" placeholder="Your title" fontSize="40px" border={0} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off" {...register('title')}/>
             </FormControl>
             <FormControl name="content">
-              <div id="editorjs"></div>
-              {/* <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" className="p-0 text-lg" {...register('content')}/> */}
+              {/* <div id="editorjs"></div> */}
+              <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" className="p-0 text-lg" {...register('content')}/>
             </FormControl>
             {dataCates && (
               <FormControl name="category">
                 <FormLabel>Blog category:</FormLabel>
                 <Select {...register('category')}>
-                  <option value="Uncategorised">Uncategorised</option>
                 {dataCates.map((d) => 
-                  <option value={d.category}>{d.category}</option>
+                  <option value={d.name}>{d.category}</option>
                 )}
                 </Select>
               </FormControl>

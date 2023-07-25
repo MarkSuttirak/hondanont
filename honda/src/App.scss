@@ -19,6 +19,10 @@ input{color:black}
   }
 }
 
+.ce-toolbar__content,.ce-block__content {
+  max-width:none
+}
+
 $primary_color:#F0592A;
 $menu_inactive_color:#BBBBBB;
 $text_color:#231F20;

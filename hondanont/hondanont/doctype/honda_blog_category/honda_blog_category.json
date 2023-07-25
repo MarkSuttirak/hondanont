@@ -15,12 +15,13 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Category",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-24 17:09:48.503703",
+ "modified": "2023-07-25 16:09:42.594041",
  "modified_by": "Administrator",
  "module": "Hondanont",
  "name": "Honda Blog Category",
