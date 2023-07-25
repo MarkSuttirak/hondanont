@@ -118,8 +118,8 @@ const BlogAdd = () => {
               <Input type="text" placeholder="Your title" fontSize="40px" border={0} className="p-0 text-3xl font-bold h-[60px]" autoComplete="off" {...register('title')}/>
             </FormControl>
             <FormControl name="content">
-              {/* <div id="editorjs"></div> */}
-              <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" className="p-0 text-lg" {...register('content')}/>
+              <div id="editorjs"></div>
+              {/* <Textarea style={{resize:'none'}} placeholder="Your content..." id="content" className="p-0 text-lg" {...register('content')}/> */}
             </FormControl>
             {dataCates && (
               <FormControl name="category">
